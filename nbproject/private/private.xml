@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/area-supervisor.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-medicos.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/DAO/SupervisorDAO.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/EstilosPerfiles/estilo-cuenta-administrador.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-consultoria.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesGenerales/ContratacionPersonal.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-enfermeria.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesGenerales/Sesion.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/tipo-medico.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/conexion/Conexion.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-recursos-humanos.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/Empleados.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/inicio-sesion.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorSesion.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/contratacion-personal.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/estilosCss/estilo.css</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/SesionEmpleados.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-administrador.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/EstilosPerfiles/scripts.html</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-supervisor.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/supervisor-inmediato.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-farmacia.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorContratacion.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/Pacientes.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/EstilosPerfiles/estilo-inicio-sesion.html</file>
+        </group>
+    </open-files>
+</project-private>

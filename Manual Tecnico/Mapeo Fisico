@@ -1,0 +1,231 @@
+CREATE DATABASE Hospital;
+
+use Hospital;
+
+CREATE TABLE Empleados (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombres VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(40) NOT NULL,
+	area_trabajo VARCHAR(40) NOT NULL,
+	edad INT NOT NULL,
+	cui INT NOT NULL,
+	tipo_contratacion VARCHAR(50) NOT NULL,
+	fecha_contratacion DATE NOT NULL	
+);
+
+ALTER TABLE Empleados ADD UNIQUE (cui);
+
+CREATE TABLE Sesion_empleados (
+	username VARCHAR(50) NOT NULL PRIMARY KEY,
+	password VARCHAR(50),
+	tipo_cuenta VARCHAR(40) NOT NULL,
+	id_empleado INT NOT NULL,
+	INDEX (id_empleado),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
+);
+
+CREATE TABLE Medicos (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,
+	especialidad VARCHAR(50) NOT NULL,
+	tipo VARCHAR(40) NOT NULL,
+	INDEX (id_empleado),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
+);
+
+CREATE TABLE Pacientes (
+	cui INT NOT NULL PRIMARY KEY,
+	nombres VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(40) NOT NULL,
+	edad INT NOT NULL,
+	direccion VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE No_historial_medico (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cui_paciente INT NOT NULL,	
+	nombres VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(40) NOT NULL,
+	dias_hospitalizado INT NOT NULL,
+	padecimiento VARCHAR(60) NOT NULL,
+	estado VARCHAR(30) NOT NULL,
+	enfermera_mando VARCHAR(50) NOT NULL,
+	no_cama INT NOT NULL,
+	no_habitacion INT NOT NULL,
+	fecha_historial_medico DATE NOT NULL,
+	INDEX (cui_paciente),
+	FOREIGN KEY (cui_paciente) REFERENCES Pacientes(cui)
+);	
+
+CREATE TABLE Historial_medico (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_historial_medico INT NOT NULL,
+	evento VARCHAR(70) NOT NULL,
+	cobro DEC(7,2) NOT NULL,
+	fecha_evento DATE NOT NULL,
+	INDEX (id_historial_medico),
+	FOREIGN KEY (id_historial_medico) REFERENCES No_historial_medico(id)
+);
+
+CREATE TABLE Medicamentos (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre VARCHAR(70) NOT NULL,
+	descripcion VARCHAR(200) NOT NULL,
+	costo_unitario DEC(7,2) NOT NULL,
+	precio_venta DEC(7,2) NOT NULL,
+	cant_existencia INT NOT NULL,
+	limite_existencia INT NOT NULL
+);
+
+CREATE TABLE No_historial_laboral (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,
+	nombres VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(40) NOT NULL,
+	supervisor VARCHAR(80) NOT NULL,
+	no_periodo_laboral INT NOT NULL,	
+	salario_base DEC(7,2) NOT NULL,
+	salario_descuento DEC(7,2) NOT NULL,
+	fecha_historial_laboral DATE NOT NULL,
+	estado VARCHAR(50) NOT NULL,
+	INDEX (id_empleado),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)	
+);
+
+CREATE TABLE historial_laboral (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_historial_laboral INT NOT NULL,
+	evento VARCHAR(80),
+	monto DEC(7,2) NOT NULL,
+	fecha_evento DATE NOT NULL,
+	INDEX (id_historial_laboral),
+	FOREIGN KEY (id_historial_laboral) REFERENCES No_historial_laboral(id)
+);
+
+CREATE TABLE Supervisor (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,
+	empleados_a_cargo INT NOT NULL,
+	limite_empleados INT NOT NULL,
+	area_trabajo VARCHAR(50) NOT NULL,
+	INDEX (id_empleado),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
+);
+
+CREATE TABLE Fechas_vacacionales (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,
+	inicio_vacaciones DATE NOT NULL,
+	fin_vacaciones DATE NOT NULL,
+	INDEX (id_empleado),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
+);
+
+CREATE TABLE Factura (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombres VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(40) NOT NULL,	
+	ciudad VARCHAR(70) NOT NULL,
+	fecha_factura DATE NOT NULL,
+	estado VARCHAR(40) NOT NULL,
+	tipo VARCHAR(40) NOT NULL,
+	total DEC(7,2) NOT NULL
+);
+
+CREATE TABLE Ventas_factura (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_factura INT NOT NULL,
+	id_medicamento INT NOT NULL,
+	cant_producto INT NOT NULL,
+	total DEC(7,2) NOT NULL,
+	INDEX (id_factura),
+	INDEX (id_medicamento),
+	FOREIGN KEY (id_factura) REFERENCES Factura(id),
+	FOREIGN KEY (id_medicamento) REFERENCES Medicamentos(id)
+);
+
+CREATE TABLE Consulta (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cui INT NOT NULL,
+	nombres VARCHAR(40) NOT NULL,
+	apellidos VARCHAR(40) NOT NULL,
+	medico VARCHAR(70) NOT NULL,
+	estado VARCHAR(30) NOT NULL,
+	fecha_consulta DATE NOT NULL
+);
+
+CREATE TABLE Recibo (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	productor VARCHAR(60) NOT NULL,
+	fecha_recibo DATE NOT NULL,
+	total DEC(7,2) NOT NULL
+);
+
+CREATE TABLE Compras_recibo (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_recibo INT NOT NULL,
+	id_medicamento INT NOT NULL,
+	cant_producto INT NOT NULL,
+	total DEC(7,2) NOT NULL,
+	INDEX (id_recibo),
+	INDEX (id_medicamento),
+	FOREIGN KEY (id_recibo) REFERENCES Recibo(id),
+	FOREIGN KEY (id_medicamento) REFERENCES Medicamentos(id)
+);
+
+CREATE TABLE Habitaciones (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	no_camas INT NOT NULL,
+	estado VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE Camas (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_habitacion INT NOT NULL,
+	estado VARCHAR(30) NOT NULL,
+	INDEX (id_habitacion),
+	FOREIGN KEY (id_habitacion) REFERENCES Habitaciones(id)
+);
+
+CREATE TABLE Cirugias (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_historial_medico INT NOT NULL,
+	estado VARCHAR(30) NOT NULL,
+	tipo_operacion VARCHAR(50) NOT NULL,
+	fecha_cirugia DATE NOT NULL,
+	INDEX (id_historial_medico),
+	FOREIGN KEY (id_historial_medico) REFERENCES No_historial_medico(id)
+);
+
+CREATE TABLE Tarifas (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	descripcion VARCHAR(100) NOT NULL,
+	total DEC(7,2) NOT NULL
+);
+
+CREATE TABLE Trabajadores_paciente_hospitalizado (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,
+	id_historial_medico INT NOT NULL,
+	area_trabajador VARCHAR(50) NOT NULL,
+	INDEX (id_empleado),
+	INDEX (id_historial_medico),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id),
+	FOREIGN KEY (id_historial_medico) REFERENCES No_historial_medico(id)		
+);
+
+CREATE TABLE Trabajadores_paciente_cirugia (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,		
+	id_cirugia INT NOT NULL,
+	area_trabajador VARCHAR(50) NOT NULL,
+	INDEX (id_empleado),
+	INDEX (id_cirugia),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id),
+	FOREIGN KEY (id_cirugia) REFERENCES Cirugias(id)
+);
+
+CREATE TABLE Areas (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre_area VARCHAR(60) NOT NULL
+);
