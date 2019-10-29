@@ -8,6 +8,14 @@
         <servlet-name>ControladorContratacion</servlet-name>
         <servlet-class>practica3.Controladores.ControladorContratacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorHistorialLaboral</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorHistorialLaboral</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorOperacionesHistorial</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorOperacionesHistorial</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>ControladorContratacion</servlet-name>
         <url-pattern>/ControladorContratacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorHistorialLaboral</servlet-name>
+        <url-pattern>/ControladorHistorialLaboral</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorOperacionesHistorial</servlet-name>
+        <url-pattern>/ControladorOperacionesHistorial</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

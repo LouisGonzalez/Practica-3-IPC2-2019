@@ -88,6 +88,7 @@ CREATE TABLE No_historial_laboral (
 	salario_descuento DEC(7,2) NOT NULL,
 	fecha_historial_laboral DATE NOT NULL,
 	estado VARCHAR(50) NOT NULL,
+	años_totales INT NOT NULL, 
 	INDEX (id_empleado),
 	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)	
 );
@@ -117,6 +118,7 @@ CREATE TABLE Fechas_vacacionales (
 	id_empleado INT NOT NULL,
 	inicio_vacaciones DATE NOT NULL,
 	fin_vacaciones DATE NOT NULL,
+	no_año_laboral INT NOT NULL,
 	INDEX (id_empleado),
 	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
 );

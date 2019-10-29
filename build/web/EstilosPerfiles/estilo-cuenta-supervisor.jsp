@@ -1,5 +1,4 @@
 <%@page import="practica3.objetos.SesionEmpleados"%>
-<!--Navbar -->
 <%
     SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
     String user = sesion.getUsername();
@@ -17,10 +16,9 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
-              
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contratacion-personal.jsp">Contratacion Personal</a>
+                        <a class="nav-link" href="historial-laboral.jsp">Historial Laboral</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,4 +39,3 @@
         </div>    
     </nav>
 </header>
-<!--/.Navbar -->

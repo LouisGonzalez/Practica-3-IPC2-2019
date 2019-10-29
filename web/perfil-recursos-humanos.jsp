@@ -4,14 +4,23 @@
     Author     : luisGonzalez
 --%>
 
+<%@page import="practica3.objetos.SesionEmpleados"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimun-scale=1.0">
         <title>JSP Page</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel='stylesheet' href='estilosCss/estilo.css'> 
+        <%
+        SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
+        String user = sesion.getUsername();
+        %>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:include page="EstilosPerfiles/estilo-cuenta-recursos-humanos.jsp"/>
+        <jsp:include page='EstilosPerfiles/scripts.html'/>
     </body>
 </html>

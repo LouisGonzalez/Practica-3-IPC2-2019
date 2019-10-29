@@ -7,6 +7,15 @@ package practica3.objetos;
 public class SesionEmpleados {
     
     private String username, password, tipo_cuenta;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

@@ -18,7 +18,7 @@ public class ContratacionPersonal {
     private static final String NUEVO_MEDICO = "INSERT INTO Medicos (id, id_empleado, especialidad, tipo) VALUES (?, ?, ?, ?)";
     private static final String NUEVO_SUPERVISOR = "INSERT INTO Supervisor (id, id_empleado, empleados_a_cargo, limite_empleados, area_trabajo) VALUES (?, ?, ?, ?, ?)";
     private static final String NUEVA_CUENTA = "INSERT INTO Sesion_empleados (username, password, tipo_cuenta, id_empleado) VALUES (?, ?, ?, ?)";
-    private static final String NUEVO_HISTORIAL_LABORAL = "INSERT INTO No_historial_laboral (id, id_empleado, nombres, apellidos, supervisor, no_periodo_laboral, salario_base, salario_descuento, fecha_historial_laboral, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String NUEVO_HISTORIAL_LABORAL = "INSERT INTO No_historial_laboral (id, id_empleado, nombres, apellidos, supervisor, no_periodo_laboral, salario_base, salario_descuento, fecha_historial_laboral, estado, años_totales) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String PRIMER_EVENTO_HISTORIAL_LABORAL = "INSERT INTO historial_laboral (id, id_historial_laboral, evento, monto, fecha_evento) VALUES (?, ?, ?, ?, ?)";
     private static final String ID_EMPLEADO = "SELECT * FROM Empleados WHERE cui = ?";
     private static final String ID_HISTORIAL = "SELECT * FROM No_historial_laboral WHERE id_empleado = ?";
@@ -191,6 +191,7 @@ public class ContratacionPersonal {
         declaracionHistorial.setDouble(8, calcularDescuento(empleado.getTipo_contratacion(), empleado.getArea_trabajo()));
         declaracionHistorial.setDate(9, empleado.getFecha_contratacion());
         declaracionHistorial.setString(10, "ACTIVO");
+        declaracionHistorial.setInt(11, 1);
         declaracionHistorial.executeUpdate();
         crearPrimerEvento(id_empleado, empleado);
         login.Desconectar();

@@ -16,7 +16,7 @@ public class Sesion {
     private static Connection cn;
     private static Conexion login;
     private final static String AREA_EMPLEADO = "SELECT * FROM Sesion_empleados WHERE username = ?";
-    
+    private static final String VERIFICACION = "SELECT * FROM Sesion_empleados WHERE username = ? AND password = ?";
     
     public static Connection obtenerConexion(){
         login = new Conexion();
@@ -37,11 +37,25 @@ public class Sesion {
         return area;
     }
     
-    public void verificarCuenta(String username, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+    public int idSesion(String username) throws SQLException{
+        obtenerConexion();
+        int id = 0;
+        PreparedStatement declaracionId = cn.prepareStatement(AREA_EMPLEADO);
+        declaracionId.setString(1, username);
+        ResultSet result = declaracionId.executeQuery();
+        while(result.next()){
+            id = result.getInt("id_empleado");
+        }
+        login.Desconectar();
+        return id;  
+    }
+    
+    public void verificarCuenta(String username, String password, HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         obtenerConexion();
         String area = "";
-        PreparedStatement declaracionArea = cn.prepareStatement(AREA_EMPLEADO);
+        PreparedStatement declaracionArea = cn.prepareStatement(VERIFICACION);
         declaracionArea.setString(1, username);
+        declaracionArea.setString(2, password);
         ResultSet result = declaracionArea.executeQuery();
         while(result.next()){
             area = result.getString("tipo_cuenta");

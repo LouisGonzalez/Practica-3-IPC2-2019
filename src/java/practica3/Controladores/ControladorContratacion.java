@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import practica3.funcionesGenerales.ContratacionPersonal;
+import practica3.funcionesGenerales.VerificarContratador;
+import practica3.funcionesSupervisor.FechasVacacionales;
 import practica3.objetos.Empleados;
+import practica3.objetos.SesionEmpleados;
 import practica3.objetos.Supervisor;
 
 /**
@@ -22,7 +25,9 @@ public class ControladorContratacion extends HttpServlet {
 
     private Empleados empleado;
     private Supervisor supervisor;
+    private final VerificarContratador verificar = new VerificarContratador();
     private final ContratacionPersonal contratacion = new ContratacionPersonal();
+    private final FechasVacacionales vacaciones = new FechasVacacionales();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,6 +73,8 @@ public class ControladorContratacion extends HttpServlet {
         String accion = request.getParameter("accion");
         String area = request.getParameter("areas");
         HttpSession session = request.getSession();
+        SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
+        String usuarioCuenta = sesion.getUsername();
         int cuiEmpleado = Integer.parseInt(request.getParameter("cui"));
         //int idSupervisor = Integer.parseInt(request.getParameter("idSupervisor"));
         try {
@@ -88,9 +95,16 @@ public class ControladorContratacion extends HttpServlet {
                         request.getRequestDispatcher("tipo-medico.jsp").forward(request, response);
                     } else if(area.equals("Supervision")){
                         contratacion.crearHistorial(empleado);
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                                     
                         request.getRequestDispatcher("area-supervisor.jsp").forward(request, response);
+                    } else if(area.equals("Recursos Humanos")){
+                        contratacion.crearHistorial(empleado);
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                    
+                    
+                        verificar.verificacion(usuarioCuenta, request, response);
                     } else {
                         contratacion.crearHistorial(empleado);
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                    
                         request.getRequestDispatcher("supervisor-inmediato.jsp").forward(request, response);
                     }
                     break;
@@ -111,6 +125,8 @@ public class ControladorContratacion extends HttpServlet {
                     contratacion.crearMedico(empleado, especialidad, tipo);
                     if(tipo.equals("Medico")){
                         contratacion.crearHistorial(empleado2);
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                    
+                    
                     }
                     request.getRequestDispatcher("supervisor-inmediato.jsp").forward(request, response);
                     break;
