@@ -1,4 +1,5 @@
 package practica3.Controladores;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -8,19 +9,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import practica3.funcionesSupervisor.FechasVacacionales;
-import practica3.funcionesSupervisor.InformacionUsuariosDAO;
-import practica3.objetos.HistorialLaboral;
+import practica3.funcionesFarmaceutico.CreacionMedicamentos;
+import practica3.objetos.Medicamentos;
 
 /**
  *
  * @author luisGonzalez
  */
-public class ControladorHistorialLaboral extends HttpServlet {
+public class ControladorMedicamentos extends HttpServlet {
 
-    private final InformacionUsuariosDAO informacionUsuarios = new InformacionUsuariosDAO();
-    private final FechasVacacionales vacaciones = new FechasVacacionales();
+    private Medicamentos medicamento;
+    private final CreacionMedicamentos creacion = new CreacionMedicamentos();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class ControladorHistorialLaboral extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorHistorialLaboral</title>");            
+            out.println("<title>Servlet ControladorMedicamentos</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorHistorialLaboral at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorMedicamentos at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,16 +59,7 @@ public class ControladorHistorialLaboral extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        int id_empleado = Integer.parseInt(request.getParameter("id"));
-        HistorialLaboral informacion = new HistorialLaboral();
-        session.setAttribute("info", informacion);
-        try {
-            informacionUsuarios.seteoInformacion(informacion, id_empleado);
-            request.getRequestDispatcher("info-empleados-supervisor.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorHistorialLaboral.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -84,37 +74,25 @@ public class ControladorHistorialLaboral extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
-        int id = Integer.parseInt(request.getParameter("id"));
-        HttpSession session = request.getSession();
         try {
 
             switch (accion) {
-                case "Aumento":
-                    session.setAttribute("idEmpleado", id);
-                    request.getRequestDispatcher("nuevo-salario.jsp").forward(request, response);
-                    break;
-                case "Renuncia":
-                    session.setAttribute("idEmpleado", id);
-                    request.getRequestDispatcher("confirmacion-renuncia.jsp").forward(request, response);
-                    break;
-                case "Despido":
-                    session.setAttribute("idEmpleado", id);
-                    request.getRequestDispatcher("confirmacion-despido.jsp").forward(request, response);
-                    break;
-                case "Historial":
-                    session.setAttribute("idEmpleado", id);
-                    request.getRequestDispatcher("eventos-historial-laboral.jsp").forward(request, response);
-                    break;
-                case "Vacaciones":
-                    session.setAttribute("idEmpleado", id);
-                    vacaciones.comparacionFechas(id);
-                    request.getRequestDispatcher("fechas-vacacionales.jsp").forward(request, response);
+                case "Guardar medicamento":
+                    medicamento = new Medicamentos();
+                    medicamento.setNombre(request.getParameter("nombre"));
+                    medicamento.setDescripcion(request.getParameter("descripcion"));
+                    medicamento.setCosto_unitario(Float.parseFloat(request.getParameter("costoUnitario")));
+                    medicamento.setPrecio_venta(Float.parseFloat(request.getParameter("precioVenta")));
+                    medicamento.setCant_existencia(Integer.parseInt(request.getParameter("existencia")));
+                    medicamento.setLimite_existencia(Integer.parseInt(request.getParameter("limiteExistencia")));
+                    creacion.crearMedicamento(medicamento);
+                    request.getRequestDispatcher("perfil-farmacia.jsp").forward(request, response);
                     break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorHistorialLaboral.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorMedicamentos.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
     }
 
     /**

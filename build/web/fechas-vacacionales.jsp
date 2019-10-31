@@ -4,6 +4,8 @@
     Author     : luisGonzalez
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="practica3.funcionesSupervisor.CambioFechasVacacionales"%>
 <%@page import="practica3.objetos.SesionEmpleados"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,8 +18,11 @@
         <link rel='stylesheet' href='estilosCss/estilo.css'> 
         <%
         SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
+        CambioFechasVacacionales cambio = new CambioFechasVacacionales();
         String user = sesion.getUsername();
         int id_empleado = (int) session.getAttribute("idEmpleado");
+        Date fechaInicial = cambio.fechas(id_empleado, "inicio_vacaciones");
+        Date fechaFinal = cambio.fechas(id_empleado, "fin_vacaciones");
         %>
     </head>
     <body>
@@ -29,6 +34,8 @@
         <jsp:include page='EstilosPerfiles/estilo-cuenta-supervisor.jsp'/>
         <div class="container"><br><br>
             <h1>Cambio de fechas vacacionales</h1>
+            Inicio vacaciones: <%=fechaInicial%><br>
+            Fin vacaciones:    <%=fechaFinal%><br><br>
             <form action="ControladorOperacionesHistorial?id=<%=id_empleado%>" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-4">

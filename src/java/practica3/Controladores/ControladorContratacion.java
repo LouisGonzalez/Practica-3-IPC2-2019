@@ -79,7 +79,7 @@ public class ControladorContratacion extends HttpServlet {
         //int idSupervisor = Integer.parseInt(request.getParameter("idSupervisor"));
         try {
         
-            switch(accion){
+            switch (accion) {
                 case "confirmar":
                     empleado = new Empleados();
                     empleado.setNombres(request.getParameter("nombre"));
@@ -91,16 +91,16 @@ public class ControladorContratacion extends HttpServlet {
                     empleado.setFecha_contratacion(Date.valueOf(request.getParameter("fecha")));
                     contratacion.crearEmpleado(empleado, request, response);
                     session.setAttribute("nuevoEmpleado", empleado);
-                    if(area.equals("Medicos")){
+                    if(area.equals("Medicos")) {
                         request.getRequestDispatcher("tipo-medico.jsp").forward(request, response);
-                    } else if(area.equals("Supervision")){
+                    } else if (area.equals("Supervision")) {
                         contratacion.crearHistorial(empleado);
-                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                                     
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);
                         request.getRequestDispatcher("area-supervisor.jsp").forward(request, response);
-                    } else if(area.equals("Recursos Humanos")){
+                    } else if (area.equals("Recursos Humanos")) {
                         contratacion.crearHistorial(empleado);
-                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                    
-                    
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);
+
                         verificar.verificacion(usuarioCuenta, request, response);
                     } else {
                         contratacion.crearHistorial(empleado);

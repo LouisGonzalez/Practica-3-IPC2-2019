@@ -16,6 +16,10 @@
         <servlet-name>ControladorOperacionesHistorial</servlet-name>
         <servlet-class>practica3.Controladores.ControladorOperacionesHistorial</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorMedicamentos</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorMedicamentos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ControladorOperacionesHistorial</servlet-name>
         <url-pattern>/ControladorOperacionesHistorial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorMedicamentos</servlet-name>
+        <url-pattern>/ControladorMedicamentos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

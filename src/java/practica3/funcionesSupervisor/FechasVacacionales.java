@@ -157,11 +157,8 @@ public class FechasVacacionales{
             System.out.println("La nueva fecha laboral es "+nuevaFechaSQL);
             if(yearAUsar > añoLaboral){
                 actualizacionAñoLaboral(id_empleado, yearAUsar);
-                fechasAleatorias(nuevaFecha, id_empleado, nuevaFechaSQL, yearAUsar);
-                
-            }
-                 
-            
+                fechasAleatorias(nuevaFecha, id_empleado, nuevaFechaSQL, yearAUsar);   
+            }        
         }
     }
     

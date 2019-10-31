@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import practica3.funcionesSupervisor.AumentoSalarios;
+import practica3.funcionesSupervisor.CambioFechasVacacionales;
 import practica3.funcionesSupervisor.DespidoEmpleados;
 import practica3.funcionesSupervisor.FechasVacacionales;
 
@@ -22,6 +23,7 @@ public class ControladorOperacionesHistorial extends HttpServlet {
     private final AumentoSalarios aumento = new AumentoSalarios();
     private final DespidoEmpleados despido = new DespidoEmpleados();
     private final FechasVacacionales vacaciones = new FechasVacacionales();
+    private final CambioFechasVacacionales cambio = new CambioFechasVacacionales();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -98,7 +100,10 @@ public class ControladorOperacionesHistorial extends HttpServlet {
                     request.getRequestDispatcher("historial-laboral.jsp").forward(request, response);
                     break;
                 case "Confirmar vacaciones":
-                    vacaciones.comparacionFechas(idEmpleado);
+                    //vacaciones.comparacionFechas(idEmpleado);
+                    Date fechaInicial = Date.valueOf(request.getParameter("fechaVacaciones"));
+                    cambio.actualizarFechas(idEmpleado, fechaInicial);
+                    request.getRequestDispatcher("fechas-vacacionales.jsp").forward(request, response);
                     break;
             }
         } catch (SQLException ex) {
