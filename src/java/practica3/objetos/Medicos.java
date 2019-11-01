@@ -7,7 +7,23 @@ package practica3.objetos;
 public class Medicos {
     
     private int id, id_empleado;
-    private String especialidad, tipo;
+    private String especialidad, tipo, nombres, apellidos;
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
 
     public int getId() {
         return id;

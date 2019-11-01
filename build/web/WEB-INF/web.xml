@@ -20,6 +20,10 @@
         <servlet-name>ControladorMedicamentos</servlet-name>
         <servlet-class>practica3.Controladores.ControladorMedicamentos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorConsultas</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorConsultas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ControladorMedicamentos</servlet-name>
         <url-pattern>/ControladorMedicamentos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorConsultas</servlet-name>
+        <url-pattern>/ControladorConsultas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

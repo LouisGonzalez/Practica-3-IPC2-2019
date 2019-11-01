@@ -151,9 +151,11 @@ CREATE TABLE Consulta (
 	cui INT NOT NULL,
 	nombres VARCHAR(40) NOT NULL,
 	apellidos VARCHAR(40) NOT NULL,
-	medico VARCHAR(70) NOT NULL,
 	estado VARCHAR(30) NOT NULL,
-	fecha_consulta DATE NOT NULL
+	fecha_consulta DATE NOT NULL,
+	id_empleado_medico INT NOT NULL,
+	INDEX (id_empleado_medico),
+	FOREIGN KEY (id_empleado_medico) REFERENCES Empleados(id)
 );
 
 CREATE TABLE Recibo (
