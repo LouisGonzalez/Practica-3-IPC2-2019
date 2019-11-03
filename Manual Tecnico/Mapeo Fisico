@@ -77,6 +77,8 @@ CREATE TABLE Medicamentos (
 	limite_existencia INT NOT NULL
 );
 
+ALTER TABLE Medicamentos ADD UNIQUE (nombre);
+
 CREATE TABLE No_historial_laboral (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	id_empleado INT NOT NULL,
@@ -131,7 +133,11 @@ CREATE TABLE Factura (
 	fecha_factura DATE NOT NULL,
 	estado VARCHAR(40) NOT NULL,
 	tipo VARCHAR(40) NOT NULL,
-	total DEC(7,2) NOT NULL
+	total DEC(7,2) NOT NULL,
+	nit INT NOT NULL,
+	id_empleado_medico INT NOT NULL,
+	INDEX (id_empleado_medico),
+	FOREIGN KEY (id_empleado_medico) REFERENCES Empleados(id)
 );
 
 CREATE TABLE Ventas_factura (
@@ -140,6 +146,7 @@ CREATE TABLE Ventas_factura (
 	id_medicamento INT NOT NULL,
 	cant_producto INT NOT NULL,
 	total DEC(7,2) NOT NULL,
+	estado VARCHAR (50),
 	INDEX (id_factura),
 	INDEX (id_medicamento),
 	FOREIGN KEY (id_factura) REFERENCES Factura(id),
@@ -155,7 +162,7 @@ CREATE TABLE Consulta (
 	fecha_consulta DATE NOT NULL,
 	id_empleado_medico INT NOT NULL,
 	INDEX (id_empleado_medico),
-	FOREIGN KEY (id_empleado_medico) REFERENCES Empleados(id)
+	FOREIGN KEY (id_empleado_medico) REFERENCES Empleados(id)	
 );
 
 CREATE TABLE Recibo (

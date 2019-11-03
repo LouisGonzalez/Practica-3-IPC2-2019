@@ -2,6 +2,7 @@ package practica3.funcionesMedico;
 
 import java.sql.*;
 import practica3.conexion.Conexion;
+import practica3.objetos.Facturas;
 
 /**
  *
@@ -13,6 +14,7 @@ public class FinalizacionCita {
     private static Conexion login;
     private static final String FINALIZACION = "UPDATE Consulta SET estado = ? WHERE id = ?";
     private static final String ESTADO = "CONCLUIDA";
+    private static final String PAGO_CONSULTA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";    
     
     public static Connection obtenerConexion(){
         login = new Conexion();
@@ -28,4 +30,7 @@ public class FinalizacionCita {
         decFinalizacion.executeUpdate();
         login.Desconectar();
     }
+    
+    
+
 }

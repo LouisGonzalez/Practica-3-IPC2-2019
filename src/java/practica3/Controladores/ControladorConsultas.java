@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import practica3.funcionesConsultor.GenerarConsulta;
+import practica3.funcionesConsultor.PagoConsulta;
 import practica3.funcionesMedico.FinalizacionCita;
 import practica3.objetos.Consultas;
 
@@ -24,6 +25,7 @@ public class ControladorConsultas extends HttpServlet {
     private Consultas consulta;
     private final GenerarConsulta nuevaConsulta = new GenerarConsulta();
     private final FinalizacionCita finalizacion = new FinalizacionCita();
+    private final PagoConsulta pago = new PagoConsulta();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -79,6 +81,7 @@ public class ControladorConsultas extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
+        int idCita, idMedico;
         try {
             switch (accion) {
                 case "Agendar una cita":
@@ -88,7 +91,7 @@ public class ControladorConsultas extends HttpServlet {
                     request.getRequestDispatcher("formulario-nueva-consulta.jsp").forward(request, response);
                     break;
                 case "Confirmar cita":
-                    int idMedico = (int) session.getAttribute("idEmpleado");
+                    idMedico = (int) session.getAttribute("idEmpleado");
                     consulta = new Consultas();
                     consulta.setNombres(request.getParameter("nombres"));
                     consulta.setApellidos(request.getParameter("apellidos"));
@@ -100,11 +103,20 @@ public class ControladorConsultas extends HttpServlet {
                     request.getRequestDispatcher("listado-medicos-consulta.jsp").forward(request, response);
                     break;
                 case "Concluir cita":
-                    int idCita = Integer.parseInt(request.getParameter("id"));
+                    idCita = Integer.parseInt(request.getParameter("id"));
                     finalizacion.finalizarCita(idCita);
                     request.getRequestDispatcher("consultas-pendientes.jsp").forward(request, response);
                     break;
-
+                case "Cancelar cita":
+                    idCita = Integer.parseInt(request.getParameter("id"));
+                    String nombres = pago.datos(idCita, "nombres");
+                    String apellidos = pago.datos(idCita, "apellidos");
+                    idMedico = Integer.parseInt(pago.datos(idCita, "id_empleado_medico"));
+                    session.setAttribute("idConsulta", idCita);
+                    session.setAttribute("nombres", nombres);
+                    session.setAttribute("apellidos", apellidos);
+                    session.setAttribute("idMedico", idMedico);
+                    request.getRequestDispatcher("pago-consulta.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorConsultas.class.getName()).log(Level.SEVERE, null, ex);
