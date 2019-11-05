@@ -63,12 +63,17 @@
                         <td><%=factura.getFecha_factura()%></td>
                         <td><%=factura.getNit()%></td>
                         <td><%=factura.getId_empleado_medico()%></td>
-                        <td><%=factura.getTotal()%></td> 
+                        <td><%=factura.getTotal()%></td>  
                         <td>
                             <form action="ControladorFacturas?id=<%=factura.getId()%>" method="POST">
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Ver compras">Ver compras</button>                        
                             </form>
                         </td>   
+                        <td>
+                            <form action="ControladorFacturas?id=<%=factura.getId()%>" method="POST">
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Ver compra">Ver compra</button>                                
+                            </form>
+                        </td>
                     </tr>
                         <%}
                     }%>

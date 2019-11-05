@@ -18,7 +18,7 @@ public class GeneracionFactura {
     private static final String PRECIO = "SELECT * FROM Medicamentos WHERE nombre = ?";
     private static final String CREACION_FACTURA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String ID_FACTURA = "SELECT * FROM Factura ORDER BY id DESC LIMIT 1";
-    private static final String CREACION_EVENTO = "INSERT INTO Ventas_factura (id, id_factura, id_medicamento, cant_producto, total, estado) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String CREACION_EVENTO = "INSERT INTO Ventas_factura (id, id_factura, id_medicamento, cant_producto, total, estado, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String ID_MEDICINA = "SELECT * FROM Medicamentos WHERE nombre= ?";
     
     public static Connection obtenerConexion(){
@@ -112,6 +112,7 @@ public class GeneracionFactura {
             declaracionEvento.setInt(4, cantProducto);
             declaracionEvento.setFloat(5, total);
             declaracionEvento.setString(6, "PENDIENTE");
+            declaracionEvento.setString(7, (String) session.getAttribute("nombreMedicamento"+i));
             declaracionEvento.executeUpdate();
         }
         login.Desconectar();

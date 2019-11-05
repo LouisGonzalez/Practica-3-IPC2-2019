@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import practica3.funcionesConsultor.PagoConsulta;
+import practica3.funcionesFarmaceutico.VentaMedicamentos;
 import practica3.funcionesMedico.GeneracionFactura;
 import practica3.objetos.Facturas;
+import practica3.objetos.VentasFactura;
 
 /**
  *
@@ -24,6 +26,7 @@ public class ControladorFacturas extends HttpServlet {
     private Facturas factura;
     private final PagoConsulta pago = new PagoConsulta();
     private final GeneracionFactura generacion = new GeneracionFactura();
+    private final VentaMedicamentos venta = new VentaMedicamentos();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,7 +78,8 @@ public class ControladorFacturas extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
-        int filas;
+        int filas, idFactura;
+        boolean verificacion;
         try {
             switch (accion) {
                 case "Pagar consulta":
@@ -123,10 +127,26 @@ public class ControladorFacturas extends HttpServlet {
                     request.getRequestDispatcher("perfil-medicos.jsp").forward(request, response);
                     break;
                 case "Ver compras":
-                    int idFactura = Integer.parseInt(request.getParameter("id"));
+                    idFactura = Integer.parseInt(request.getParameter("id"));
                     session.setAttribute("idFactura", idFactura);
                     request.getRequestDispatcher("ventas-desglosadas.jsp").forward(request, response);
                     break;
+                case "Ver compra":
+                    idFactura = Integer.parseInt(request.getParameter("id"));
+                    verificacion = false;
+                    session.setAttribute("verificador", verificacion);
+                    session.setAttribute("idFactura", idFactura);
+                    
+                    request.getRequestDispatcher("confirmacion-venta.jsp").forward(request, response);
+                    break;
+                case "Total final":
+                    filas = (int) session.getAttribute("filas");
+                    verificacion = true;
+                    session.setAttribute("verificador", verificacion);
+                    VentasFactura ventas = (VentasFactura) session.getAttribute("ventas");
+                    venta.calculoTotal(filas, request, response, ventas, session);
+                    request.getRequestDispatcher("confirmacion-venta.jsp").forward(request, response);
+                    
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFacturas.class.getName()).log(Level.SEVERE, null, ex);

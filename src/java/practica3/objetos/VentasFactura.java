@@ -8,8 +8,16 @@ public class VentasFactura {
     
     private int id, id_factura, id_medicamento, cant_producto;
     private float total;
-    private String estado;
+    private String estado, descripcion;
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     public int getId() {
         return id;
     }

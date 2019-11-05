@@ -60,6 +60,7 @@ public class ListadoPreVentasDAO {
             ventas.setCant_producto(result.getInt("cant_producto"));
             ventas.setTotal(result.getFloat("total"));
             ventas.setEstado(result.getString("estado"));
+            ventas.setDescripcion(result.getString("descripcion"));
             list.add(ventas);        
         }
         login.Desconectar();

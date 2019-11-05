@@ -37,8 +37,10 @@
                 <thead class="thead-dark"> 
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Id Factura</th>
                         <th scope="col">Id medicamento</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Cant. Producto</th>
                         <th scope="col">Total</th>
                     </tr>
@@ -53,8 +55,10 @@
                     %>
                     <tr>
                         <td scope="row"><%=x%></td>
+                        <td><%=ventas.getId()%></td>
                         <td><%=ventas.getId_factura()%></td>
                         <td><%=ventas.getId_medicamento()%></td>
+                        <td><%=ventas.getDescripcion()%></td>
                         <td><%=ventas.getCant_producto()%></td>
                         <td><%=ventas.getTotal()%></td>
                     </tr>
