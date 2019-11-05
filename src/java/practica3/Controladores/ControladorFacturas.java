@@ -122,6 +122,11 @@ public class ControladorFacturas extends HttpServlet {
                     generacion.crearEventosFactura(filas, session);
                     request.getRequestDispatcher("perfil-medicos.jsp").forward(request, response);
                     break;
+                case "Ver compras":
+                    int idFactura = Integer.parseInt(request.getParameter("id"));
+                    session.setAttribute("idFactura", idFactura);
+                    request.getRequestDispatcher("ventas-desglosadas.jsp").forward(request, response);
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFacturas.class.getName()).log(Level.SEVERE, null, ex);

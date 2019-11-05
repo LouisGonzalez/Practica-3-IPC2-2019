@@ -49,8 +49,7 @@ public class GeneracionFactura {
             session.setAttribute("totalUnitario"+i, totalUnitario);
         }
         factura.setTotal(cant);
-        session.setAttribute("datosPersonales", factura);    
-        
+        session.setAttribute("datosPersonales", factura);       
         login.Desconectar();
         
     }

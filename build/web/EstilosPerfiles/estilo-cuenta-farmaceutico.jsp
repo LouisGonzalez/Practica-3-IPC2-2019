@@ -20,6 +20,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="nuevo-medicamento.jsp">Ingresar un nuevo tipo de medicina al inventario</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ventas-prestablecidas.jsp">Ventas pre-establecidas</a>
+                    </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
