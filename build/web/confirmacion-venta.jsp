@@ -24,7 +24,7 @@
             int id_empleado = sesion.getId();
             int idFactura = (int) session.getAttribute("idFactura");
             boolean verificador = (boolean) session.getAttribute("verificador");
-            
+            boolean iniciador = (boolean) session.getAttribute("iniciador");
         %>
     </head>
     <body>
@@ -56,6 +56,9 @@
                         <%
                             int x = 0;
                             
+                            
+                            
+                            
                             if (listar.size() > 0) {
                                 for (VentasFactura listar2 : listar) {
                                     ventas = listar2;
@@ -64,15 +67,31 @@
                         <tr>
                             <td scope="row"><%=x%></td>
                             <td><%=ventas.getId()%></td>
+                            <%session.setAttribute("id"+x, ventas.getId()); %>
                             <td><%=ventas.getId_factura()%></td>
                             <td><%=ventas.getId_medicamento()%></td>
                             <td><%=ventas.getDescripcion()%></td>
                             <td><%=ventas.getCant_producto()%></td>
-                            <td><%=ventaMedicina.totalEnExistencia(idFactura, ventas.getId_medicamento(), ventas)%></td>
+                            <%int cantFinal = ventaMedicina.totalEnExistencia(idFactura, ventas.getId_medicamento(), ventas);%>
+                            <td><%=cantFinal%></td>
+                            <%session.setAttribute("cantFinal"+x, cantFinal); %>
                             <td><%=ventas.getTotal()%></td>
-                            <td><input name="total<%=x%>" class="form-control" value=" <%=ventaMedicina.revisionExistencias(idFactura, ventas.getId_medicamento(), ventas)%>"/></td>    
-                            <td>
-                                <input type="checkbox" name="confirmacion<%=x%>">
+                            <%float totalFinal =  ventaMedicina.revisionExistencias(idFactura, ventas.getId_medicamento(), ventas);
+                            session.setAttribute("totalFinal"+x, totalFinal); %>
+                            <td><input name="total<%=x%>" class="form-control" value=" <%=totalFinal%>"/></td>
+                            
+                            
+                            <td>     
+                                <%if(iniciador == false) {%>                                
+                                    <input type="checkbox" name="confirmacion<%=x%>">
+                                <%} else if(iniciador == true){%>
+                                    <%boolean checkbox = (boolean) session.getAttribute("verificadorCasilla"+x); %>                                
+                                    <% if(checkbox == true) {%>    
+                                        <input type="checkbox" name="confirmacion<%=x%>" checked>
+                                    <%} else if(iniciador == true && checkbox == false) {%>
+                                        <input type="checkbox" name="confirmacion<%=x%>">
+                                    <%}
+                                }%>                            
                             </td>
                                 <%}
                             }

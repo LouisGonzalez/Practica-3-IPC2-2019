@@ -79,7 +79,7 @@ public class ControladorFacturas extends HttpServlet {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
         int filas, idFactura;
-        boolean verificacion;
+        boolean verificacion, checkbox, iniciador;
         try {
             switch (accion) {
                 case "Pagar consulta":
@@ -134,6 +134,8 @@ public class ControladorFacturas extends HttpServlet {
                 case "Ver compra":
                     idFactura = Integer.parseInt(request.getParameter("id"));
                     verificacion = false;
+                    iniciador = false;
+                    session.setAttribute("iniciador", iniciador);
                     session.setAttribute("verificador", verificacion);
                     session.setAttribute("idFactura", idFactura);
                     
@@ -142,10 +144,20 @@ public class ControladorFacturas extends HttpServlet {
                 case "Total final":
                     filas = (int) session.getAttribute("filas");
                     verificacion = true;
+                    iniciador = true;
+                    session.setAttribute("iniciador", iniciador);
                     session.setAttribute("verificador", verificacion);
                     VentasFactura ventas = (VentasFactura) session.getAttribute("ventas");
                     venta.calculoTotal(filas, request, response, ventas, session);
                     request.getRequestDispatcher("confirmacion-venta.jsp").forward(request, response);
+                    break;
+                case "Efectuar compra":
+                    float totalFinal = Float.valueOf(request.getParameter("totalFinal"));
+                    filas = (int) session.getAttribute("filas");
+                    idFactura = (int) session.getAttribute("idFactura");
+                    venta.confirmarCompra(idFactura, totalFinal, filas, request, session);
+                    request.getRequestDispatcher("ventas-prestablecidas.jsp").forward(request, response);
+                    break;
                     
             }
         } catch (SQLException ex) {
