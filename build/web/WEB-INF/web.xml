@@ -28,6 +28,10 @@
         <servlet-name>ControladorFacturas</servlet-name>
         <servlet-class>practica3.Controladores.ControladorFacturas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorHabitaciones</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorHabitaciones</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ControladorFacturas</servlet-name>
         <url-pattern>/ControladorFacturas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorHabitaciones</servlet-name>
+        <url-pattern>/ControladorHabitaciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

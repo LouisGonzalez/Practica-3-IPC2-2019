@@ -22,13 +22,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="contratacion-personal.jsp">Contratacion Personal</a>
                     </li>
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                            Habitaciones
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="nuevas-habitaciones.jsp">Agregar nuevas habitaciones</a>
+                            <a class="dropdown-item" href="cuota-diaria-habitacion.jsp">Cambio de cuotas de mantenimiento diarias</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>

@@ -188,7 +188,8 @@ CREATE TABLE Compras_recibo (
 CREATE TABLE Habitaciones (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	no_camas INT NOT NULL,
-	estado VARCHAR(30) NOT NULL
+	estado VARCHAR(30) NOT NULL,
+	costo_diario DEC(7,2) NOT NULL,
 );
 
 CREATE TABLE Camas (
