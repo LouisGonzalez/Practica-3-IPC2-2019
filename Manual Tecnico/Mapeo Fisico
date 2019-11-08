@@ -49,12 +49,14 @@ CREATE TABLE No_historial_medico (
 	dias_hospitalizado INT NOT NULL,
 	padecimiento VARCHAR(60) NOT NULL,
 	estado VARCHAR(30) NOT NULL,
-	enfermera_mando VARCHAR(50) NOT NULL,
 	no_cama INT NOT NULL,
 	no_habitacion INT NOT NULL,
 	fecha_historial_medico DATE NOT NULL,
+	id_enfermera_mando INT NOT NULL,
 	INDEX (cui_paciente),
-	FOREIGN KEY (cui_paciente) REFERENCES Pacientes(cui)
+	INDEX (id_enfermera_mando),
+	FOREIGN KEY (cui_paciente) REFERENCES Pacientes(cui),
+	FOREIGN KEY (id_enfermera_mando) REFERENCES Empleados(id)
 );	
 
 CREATE TABLE Historial_medico (
