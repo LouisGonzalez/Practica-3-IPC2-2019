@@ -1,6 +1,6 @@
 <%-- 
-    Document   : perfil-enfermeria
-    Created on : 20/10/2019, 11:54:37 AM
+    Document   : opciones-historial-medico
+    Created on : 8/11/2019, 07:14:44 PM
     Author     : luisGonzalez
 --%>
 
@@ -17,12 +17,17 @@
         <%
         SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
         String user = sesion.getUsername();
-        int id_empleado = sesion.getId();
+        int id = sesion.getId();
+        int idHistorial = (int) session.getAttribute("idHMedico");
         %>
-    </head>
+    </head>    
     <body>
         <jsp:include page='EstilosPerfiles/estilo-cuenta-enfermeria.jsp'/>
-        
+        <div class="container"><br><br>
+            <form action="ControladorHistorialMedico" method="POST">
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar un medicamento">Registrar el uso de un medicamento</button>                                                            
+            </form>                                                                                
+        </div>
         <jsp:include page='EstilosPerfiles/scripts.html'/>
     </body>
 </html>

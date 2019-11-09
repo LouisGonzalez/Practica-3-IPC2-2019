@@ -25,6 +25,11 @@
         %>
     </head>
     <body>
+        <script>
+            function mensaje(){
+                alert('Esta cama ya se encuentra ocupada');
+            }
+        </script>    
         <jsp:include page='EstilosPerfiles/estilo-cuenta-consultor.jsp'/>
         <%
             CamasHabitacionesDAO dao = new CamasHabitacionesDAO();
@@ -57,9 +62,13 @@
                         <td><%=cama.getId_habitacion()%></td>
                         <td><%=cama.getEstado()%></td>
                         <td>
-                            <form action="ControladorCamas?id=<%=cama.getId()%>" method="POST">
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Asignar nuevo paciente">Asignar nuevo paciente</button>                        
-                            </form>
+                            <%if (cama.getEstado().equals("OCUPADA")) {%>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Asignar nuevo paciente" onclick="mensaje()">Asignar nuevo paciente</button>                        
+                            <%} else {%>   
+                                <form action="ControladorCamas?id=<%=cama.getId()%>" method="POST">
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Asignar nuevo paciente">Asignar nuevo paciente</button>                        
+                                </form>
+                            <%}%>
                         </td>
                     </tr>
                         <%}

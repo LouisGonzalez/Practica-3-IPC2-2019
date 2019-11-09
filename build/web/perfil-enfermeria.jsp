@@ -21,5 +21,8 @@
         %>
     </head>
     <body>
+        <jsp:include page='EstilosPerfiles/estilo-cuenta-enfermeria.jsp'/>
+        
+        <jsp:include page='EstilosPerfiles/scripts.html'/>
     </body>
 </html>

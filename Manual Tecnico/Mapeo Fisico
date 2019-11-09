@@ -53,9 +53,8 @@ CREATE TABLE No_historial_medico (
 	no_habitacion INT NOT NULL,
 	fecha_historial_medico DATE NOT NULL,
 	id_enfermera_mando INT NOT NULL,
-	INDEX (cui_paciente),
+	total DEC(7,2) NOT NULL,
 	INDEX (id_enfermera_mando),
-	FOREIGN KEY (cui_paciente) REFERENCES Pacientes(cui),
 	FOREIGN KEY (id_enfermera_mando) REFERENCES Empleados(id)
 );	
 
@@ -65,8 +64,11 @@ CREATE TABLE Historial_medico (
 	evento VARCHAR(70) NOT NULL,
 	cobro DEC(7,2) NOT NULL,
 	fecha_evento DATE NOT NULL,
+	id_medicamento INT NOT NULL,
+	INDEX (id_medicamento),
 	INDEX (id_historial_medico),
-	FOREIGN KEY (id_historial_medico) REFERENCES No_historial_medico(id)
+	FOREIGN KEY (id_historial_medico) REFERENCES No_historial_medico(id),
+	FOREIGN KEY (id_medicamento) REFERENCES Medicamentos(id)
 );
 
 CREATE TABLE Medicamentos (
