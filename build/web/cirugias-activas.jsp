@@ -66,8 +66,11 @@
                             <td>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Asignaciones">Asignaciones</button>                                                                                        
                             </td>
-                            <%}%>
-
+                                <%}
+                                session.setAttribute("idCirugia"+x, cirugia.getId()); 
+                                session.setAttribute("filas", x);
+                            %>
+                                
 
                         </tr>
                         <%}

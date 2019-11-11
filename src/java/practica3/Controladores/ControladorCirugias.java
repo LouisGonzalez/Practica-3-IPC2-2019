@@ -73,6 +73,7 @@ public class ControladorCirugias extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
+        int numFilas;
         try {
 
             switch (accion) {
@@ -84,12 +85,14 @@ public class ControladorCirugias extends HttpServlet {
                     request.getRequestDispatcher("asignacion-medicos-cirugia.jsp").forward(request, response);
                     break;
                 case "Asignar medicos":
-                    int numFilas = (int) session.getAttribute("filas");
+                    numFilas = (int) session.getAttribute("filas");
                     cirugia.asignarMedicos(numFilas, request, session);
                     request.getRequestDispatcher("pacientes-medico.jsp").forward(request, response);
                     break;
                 case "Marcar como finalizada":
-                    
+                    numFilas = (int) session.getAttribute("filas");
+                    cirugia.finalizarCirugia(numFilas, request, session);
+                    request.getRequestDispatcher("cirugias-activas.jsp").forward(request, response);
                     break;
                 case "Asignaciones":
                     

@@ -16,8 +16,10 @@ public class CirugiaPaciente {
     private static final String ASIGNACION_MEDICOS = "INSERT INTO Trabajadores_paciente_cirugia (id, id_empleado, id_cirugia, area_trabajador) VALUES (?, ?, ?, ?)";
     private static final String NUEVA_OPERACION = "INSERT INTO Cirugias (id, id_historial_medico, estado, tipo_operacion, fecha_cirugia) VALUES (?, ?, ?, ?, ?)";
     private static final String ID_CIRUGIA = "SELECT * FROM Cirugias ORDER BY id DESC LIMIT 1";
+    private static final String CIRUGIA_COMPLETA = "UPDATE Cirugias SET estado = ? WHERE id = ?";
     private static final String NUEVO_EVENTO = "";
     private static final String ESTADO = "ACTIVA";
+    private static final String ESTADO2 = "CONCLUIDA";
     private static final String AREA = "Medicos";
     
     public static Connection obtenerConexion(){
@@ -51,6 +53,18 @@ public class CirugiaPaciente {
                 decAsignacion.setString(4, AREA);
                 decAsignacion.executeUpdate();
             }
+        }
+        login.Desconectar();
+    }
+    
+    public void finalizarCirugia(int numFilas, HttpServletRequest request, HttpSession session) throws SQLException{
+        obtenerConexion();
+        for(int x =1; x <= numFilas; x++){
+            int idCirugia = (int) session.getAttribute("idCirugia"+x);
+            PreparedStatement decFinalizada = cn.prepareStatement(CIRUGIA_COMPLETA);
+            decFinalizada.setString(1, ESTADO2);
+            decFinalizada.setInt(2, idCirugia);
+            decFinalizada.executeUpdate();
         }
         login.Desconectar();
     }
