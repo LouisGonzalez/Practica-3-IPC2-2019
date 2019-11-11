@@ -97,7 +97,7 @@
                             }
                             session.setAttribute("filas", x);
                             session.setAttribute("ventas", ventas);    %>
-                           
+                        </tr>  
                     </tbody>
                 </table>
                 <table>

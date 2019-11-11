@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import practica3.funcionesConsultor.AsignacionesHospitalizacion;
 import practica3.funcionesConsultor.NuevaHospitalizacion;
 import practica3.objetos.HistorialMedico;
 
@@ -23,6 +24,7 @@ public class ControladorHospitalizacion extends HttpServlet {
     private HistorialMedico hMedico;
     private static final String ESTADO_HISTORIAL = "ACTIVO";
     private final NuevaHospitalizacion hospital = new NuevaHospitalizacion();
+    private final AsignacionesHospitalizacion asignacion = new AsignacionesHospitalizacion();
     
     
     /**
@@ -79,6 +81,7 @@ public class ControladorHospitalizacion extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
+        int numFilas;
         try {
             switch (accion) {
                 case "Crear historial medico":
@@ -94,8 +97,21 @@ public class ControladorHospitalizacion extends HttpServlet {
                     hMedico.setFecha_historial_medico(Date.valueOf(request.getParameter("fechaIngreso")));
                     hMedico.setId_enfermera_mando(Integer.parseInt(request.getParameter("enfermeraMando")));
                     hospital.crearHistorialMedico(hMedico);
+                    session.setAttribute("idMedico", hMedico.getId_enfermera_mando());
+                    request.getRequestDispatcher("asignacion-enfermeras-paciente.jsp").forward(request, response);
+                    break;
+                case "Asignar enfermeras":
+                    numFilas = (int) session.getAttribute("filas");      
+                    asignacion.asignarEnfermeras(numFilas, request, session);
+                    request.getRequestDispatcher("asignacion-medicos-paciente.jsp").forward(request, response);
+                    break;
+                case "Asignar medicos":
+                    numFilas = (int) session.getAttribute("filas2");
+                    asignacion.asignarMedicos(numFilas, request, session);
                     request.getRequestDispatcher("perfil-consultoria.jsp").forward(request, response);
                     break;
+                    
+                    
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorHospitalizacion.class.getName()).log(Level.SEVERE, null, ex);

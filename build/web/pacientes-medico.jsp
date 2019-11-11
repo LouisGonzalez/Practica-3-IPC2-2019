@@ -24,13 +24,13 @@
         %>
     </head>    
     <body>
-        <jsp:include page='EstilosPerfiles/estilo-cuenta-enfermeria.jsp'/>
+        <jsp:include page='EstilosPerfiles/estilo-cuenta-medico.jsp'/>
         <%
             PacientesACargoDAO dao = new PacientesACargoDAO();
             HistorialMedico historial = new HistorialMedico();
             ArrayList<HistorialMedico> listar = dao.listarPacientes(id);
         %>
-        <div class="container"><br><br>
+        <br><br>
             <h1>Listado pacientes bajo mi cargo</h1>
             <table class="table">
                 <thead class="thead-dark">
@@ -40,12 +40,13 @@
                         <th scope="col">CUI</th>
                         <th scope="col">Nombres</th>
                         <th scope="col">Apellidos</th>
-                        <th scope="col">Dias hospitalizado</th>
                         <th scope="col">Padecimiento</th>
                         <th scope="col">No cama</th>
                         <th scope="col">No Habitacion</th>
                         <th scope="col">Fecha de inicio</th>
                         <th scope="col">Total acumulado</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +63,6 @@
                         <td><%=historial.getCui_paciente()%></td>
                         <td><%=historial.getNombres()%></td>
                         <td><%=historial.getApellidos()%></td>
-                        <td><%=historial.getDias_hospitalizado()%></td>
                         <td><%=historial.getPadecimiento()%></td>
                         <td><%=historial.getNo_cama()%></td>
                         <td><%=historial.getNo_habitacion()%></td>
@@ -83,7 +83,6 @@
                     }%>
                 </tbody>
             </table>
-        </div>
         <jsp:include page="EstilosPerfiles/scripts.html"/>
     </body>
 </html>

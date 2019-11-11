@@ -24,7 +24,7 @@
         %>
     </head>    
     <body>
-        <jsp:include page='EstilosPerfiles/estilo-cuenta-enfermeria.jsp'/>
+        <jsp:include page='EstilosPerfiles/estilo-cuenta-medico.jsp'/>
         <div class="container"><br><br>
             <h1>Registro de medicamentos</h1>
             <form action="ControladorHistorialMedico" method="POST">

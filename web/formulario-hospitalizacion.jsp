@@ -33,20 +33,21 @@
                 <input type="number" name="cui" class="form-control" placeholder="CUI" required>
                 <input name="padecimiento" class="form-control" placeholder="Padecimiento" required>
                 
-                
+                 <br>Medico a cargo<br>
                 <select name="enfermeraMando" class="form-control">
                     <%
                         Conexion login = new Conexion();
                         Connection cn = login.getConnection();
-                        String ENFERMERA = "SELECT * FROM Empleados WHERE area_trabajo = ?";
-                        PreparedStatement decEnfermera = cn.prepareStatement(ENFERMERA);
-                        decEnfermera.setString(1, "Enfermeria");
-                        ResultSet result = decEnfermera.executeQuery();
+                        String ENFERMERA = "SELECT * FROM Empleados e JOIN Medicos m ON e.id = m.id_empleado WHERE tipo = ?";
+                        PreparedStatement decMedico = cn.prepareStatement(ENFERMERA);
+                        decMedico.setString(1, "Medico");
+                        ResultSet result = decMedico.executeQuery();
                         while(result.next()){%>
                         <option value="<%=result.getInt("id")%>"><%=result.getString("nombres")+" "+result.getString("apellidos")%></option>  
                         <%}
                     %>
-                </select><br><br>
+                </select><br>
+                Fecha de ingreso<br>    
                 <input type="date" name="fechaIngreso" class="form-control" required>
                 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Crear historial medico">Crear historial medico</button>

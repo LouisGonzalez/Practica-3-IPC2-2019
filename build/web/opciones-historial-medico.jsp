@@ -22,10 +22,13 @@
         %>
     </head>    
     <body>
-        <jsp:include page='EstilosPerfiles/estilo-cuenta-enfermeria.jsp'/>
+        <jsp:include page='EstilosPerfiles/estilo-cuenta-medico.jsp'/>
         <div class="container"><br><br>
             <form action="ControladorHistorialMedico" method="POST">
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar un medicamento">Registrar el uso de un medicamento</button>                                                            
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar un medicamento">Registrar el uso de un medicamento</button>                                                                        
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar una operacion">Registrar una cirugia</button>                                                            
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Ver cirugias">Ver cirugias</button>                                                            
+            
             </form>                                                                                
         </div>
         <jsp:include page='EstilosPerfiles/scripts.html'/>

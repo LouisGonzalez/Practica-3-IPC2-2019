@@ -1,9 +1,7 @@
 package practica3.Controladores;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -11,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import practica3.funcionesEnfermeria.MedicamentoPaciente;
+import practica3.funcionesMedico.CirugiaPaciente;
 
 /**
  *
  * @author luisGonzalez
  */
-public class ControladorHistorialMedico extends HttpServlet {
+public class ControladorCirugias extends HttpServlet {
 
-    private final MedicamentoPaciente medicamento = new MedicamentoPaciente();
+    private final CirugiaPaciente cirugia = new CirugiaPaciente();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +36,10 @@ public class ControladorHistorialMedico extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorHistorialMedico</title>");            
+            out.println("<title>Servlet ControladorCirugias</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorHistorialMedico at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorCirugias at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,39 +73,30 @@ public class ControladorHistorialMedico extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
-        int idHistorial, idMedicina;
         try {
+
             switch (accion) {
-                case "Opciones historial":
-                    idHistorial = Integer.parseInt(request.getParameter("id"));
-                    session.setAttribute("idHMedico", idHistorial);
-                    request.getRequestDispatcher("opciones-historial-medico.jsp").forward(request, response);
+                case "Registrar operacion en proceso":
+                    int idHistorial = (int) session.getAttribute("idHMedico");
+                    String operacion = request.getParameter("descripcion");
+                    Date fechaCirugia = Date.valueOf(request.getParameter("fecha"));
+                    cirugia.crearNuevaOperacion(idHistorial, operacion, fechaCirugia);
+                    request.getRequestDispatcher("asignacion-medicos-cirugia.jsp").forward(request, response);
                     break;
-                case "Registrar un medicamento":
-                    request.getRequestDispatcher("control-medicamentos-paciente.jsp").forward(request, response);
-                    break;
-                case "Registrar consumo":
-                    idHistorial = (int) session.getAttribute("idHMedico");
-                    idMedicina = Integer.parseInt(request.getParameter("medicinas"));
-                    int cantMedicamentos = Integer.parseInt(request.getParameter("cantidad"));
-                    Date fecha = Date.valueOf(request.getParameter("fechaEvento"));
-                    medicamento.crearEventoHistorial(idHistorial, idMedicina, cantMedicamentos, fecha);
+                case "Asignar medicos":
+                    int numFilas = (int) session.getAttribute("filas");
+                    cirugia.asignarMedicos(numFilas, request, session);
                     request.getRequestDispatcher("pacientes-medico.jsp").forward(request, response);
                     break;
-                case "Ver historial":
-                    idHistorial = Integer.parseInt(request.getParameter("id"));
-                    session.setAttribute("idHMedico", idHistorial);
-                    request.getRequestDispatcher("eventos-historial-medico.jsp").forward(request, response);
+                case "Marcar como finalizada":
+                    
                     break;
-                case "Registrar una operacion":
-                    request.getRequestDispatcher("formulario-nueva-cirugia.jsp").forward(request, response);
-                    break;
-                case "Ver cirugias":
-                    request.getRequestDispatcher("cirugias-activas.jsp").forward(request, response);
+                case "Asignaciones":
+                    
                     break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorHistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorCirugias.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

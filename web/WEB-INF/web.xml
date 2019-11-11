@@ -44,6 +44,10 @@
         <servlet-name>ControladorHistorialMedico</servlet-name>
         <servlet-class>practica3.Controladores.ControladorHistorialMedico</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorCirugias</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorCirugias</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ControladorHistorialMedico</servlet-name>
         <url-pattern>/ControladorHistorialMedico</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorCirugias</servlet-name>
+        <url-pattern>/ControladorCirugias</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

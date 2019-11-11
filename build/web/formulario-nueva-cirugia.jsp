@@ -1,6 +1,6 @@
 <%-- 
-    Document   : opciones-historial-medico
-    Created on : 8/11/2019, 07:14:44 PM
+    Document   : formulario-nueva-operacion
+    Created on : 10/11/2019, 06:45:08 PM
     Author     : luisGonzalez
 --%>
 
@@ -24,13 +24,14 @@
     <body>
         <jsp:include page='EstilosPerfiles/estilo-cuenta-medico.jsp'/>
         <div class="container"><br><br>
-            <form action="ControladorHistorialMedico" method="POST">
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar un medicamento">Registrar el uso de un medicamento</button>                                                                        
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar una operacion">Registrar una cirugia</button>                                                            
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Ver cirugias">Ver cirugias</button>                                                            
-            
-            </form>                                                                                
+            <h1>Formulario para una nueva cirugia</h1>
+            <form action="ControladorCirugias" method="POST">
+                <input name="descripcion" class="form-control" placeholder="Descripcion de la cirugia" required>
+                <input type="date" name="fecha" class="form-control" required>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar operacion en proceso">Registrar operacion en proceso</button>                                                                                        
+            </form>
         </div>
+        
         <jsp:include page='EstilosPerfiles/scripts.html'/>
     </body>
 </html>
