@@ -13,7 +13,7 @@ public class CirugiasActivasDAO {
 
     private static Connection cn;
     private static Conexion login;
-    private static final String LISTADO_CIRUGIAS = "SELECT * FROM Cirugias";
+    private static final String LISTADO_CIRUGIAS = "SELECT * FROM Cirugias WHERE id_historial_medico = ?";
     
     private static Connection obtenerConexion(){
         login = new Conexion();
@@ -21,10 +21,11 @@ public class CirugiasActivasDAO {
         return cn;
     }
     
-    public ArrayList<Cirugias> listarCirugias() throws SQLException{
+    public ArrayList<Cirugias> listarCirugias(int idHistorial) throws SQLException{
         ArrayList<Cirugias> list = new ArrayList<>();
         obtenerConexion();
         PreparedStatement declaracionLista = cn.prepareStatement(LISTADO_CIRUGIAS);
+        declaracionLista.setInt(1, idHistorial);
         ResultSet result = declaracionLista.executeQuery();
         while(result.next()){
             Cirugias cirugia = new Cirugias();

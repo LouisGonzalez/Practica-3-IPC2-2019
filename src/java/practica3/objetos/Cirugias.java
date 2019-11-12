@@ -8,10 +8,43 @@ import java.sql.Date;
  */
 public class Cirugias {
     
-    private int id, id_historial_medico;
-    private String estado, tipo_operacion;
+    private int id, id_historial_medico, id_empleado;
+    private String estado, tipo_operacion, tipo_medico;
+    private float precio_cirugia, costo_cirugia;
     private Date fecha_cirugia;
 
+    public String getTipo_medico() {
+        return tipo_medico;
+    }
+
+    public void setTipo_medico(String tipo_medico) {
+        this.tipo_medico = tipo_medico;
+    }
+    
+    public int getId_empleado() {
+        return id_empleado;
+    }
+
+    public void setId_empleado(int id_empleado) {
+        this.id_empleado = id_empleado;
+    }
+    
+    public float getPrecio_cirugia() {
+        return precio_cirugia;
+    }
+
+    public void setPrecio_cirugia(float precio_cirugia) {
+        this.precio_cirugia = precio_cirugia;
+    }
+
+    public float getCosto_cirugia() {
+        return costo_cirugia;
+    }
+
+    public void setCosto_cirugia(float costo_cirugia) {
+        this.costo_cirugia = costo_cirugia;
+    }
+    
     public int getId() {
         return id;
     }

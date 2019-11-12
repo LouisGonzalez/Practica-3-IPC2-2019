@@ -28,6 +28,7 @@
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar un medicamento">Registrar el uso de un medicamento</button>                                                                        
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Registrar una operacion">Registrar una cirugia</button>                                                            
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Ver cirugias">Ver cirugias</button>                                                            
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Alta medica">Alta medica</button>                                                            
             
             </form>                                                                                
         </div>

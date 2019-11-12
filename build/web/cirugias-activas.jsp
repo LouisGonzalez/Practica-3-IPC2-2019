@@ -29,10 +29,9 @@
         <%
             CirugiasActivasDAO dao = new CirugiasActivasDAO();
             Cirugias cirugia = new Cirugias();
-            ArrayList<Cirugias> listar = dao.listarCirugias();
+            ArrayList<Cirugias> listar = dao.listarCirugias(idHistorial);
         %>
         <div class="container"><br><br>
-            <form action="ControladorCirugias" method="POST">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -41,6 +40,8 @@
                             <th scope="col">Id Historial</th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Fecha cirugia</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,23 +62,24 @@
                                 if (cirugia.getEstado().equals("ACTIVA")) {
                             %>
                             <td>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Marcar como finalizada">Marcar como finalizada</button>                                                                                                                    
+                                <form action="ControladorCirugias?id=<%=cirugia.getId()%>" method="POST">           
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Marcar como finalizada">Marcar como finalizada</button>                                                                                                                    
+                                </form>        
                             </td>
                             <td>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Asignaciones">Asignaciones</button>                                                                                        
+                                <form action="ControladorCirugias?id=<%=cirugia.getId()%>" method="POST">           
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Asignaciones">Asignaciones</button>                                                                                        
+                                </form>    
                             </td>
-                                <%}
-                                session.setAttribute("idCirugia"+x, cirugia.getId()); 
-                                session.setAttribute("filas", x);
-                            %>
-                                
-
+                            <%} else {%>
+                            <td></td>
+                            <td></td>
+                            <%}%>
                         </tr>
                         <%}
                             }%>
                     </tbody>
                 </table>
-            </form>
         </div>
         <jsp:include page='EstilosPerfiles/scripts.html'/>
     </body>

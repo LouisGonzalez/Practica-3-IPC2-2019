@@ -43,6 +43,7 @@
                         <th scope="col">Nombres</th>
                         <th scope="col">Apellidos</th>
                         <th scope="col">Especialidad</th>
+                        <th scope="col">Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +60,7 @@
                         <td><%=medico.getNombres()%></td>
                         <td><%=medico.getApellidos()%></td>
                         <td><%=medico.getEspecialidad()%></td>
+                        <td><%=medico.getTipo()%></td>
                         <td><input type="checkbox" name="medico<%=x%>"></td>
                         <%
                             session.setAttribute("idMedico"+x, medico.getId_empleado());

@@ -11,7 +11,7 @@ public class MedicamentoPaciente {
     
     private static Connection cn;
     private static Conexion login;
-    private static final String EVENTO_HISTORIAL = "INSERT INTO Historial_medico (id, id_historial_medico, evento, cobro, fecha_evento, id_medicamento) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String EVENTO_HISTORIAL = "INSERT INTO Historial_medico (id, id_historial_medico, evento, cobro, fecha_evento, id_medicamento, id_empleado_pago) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String TOTAL_MEDICAMENTO = "SELECT * FROM Medicamentos WHERE id = ?";
     private static final String TOTAL_ACUMULADO = "SELECT * FROM No_historial_medico WHERE id = ?";
     private static final String NUEVO_TOTAL_ACUMULADO = "UPDATE No_historial_medico SET total = ? WHERE id = ?";
@@ -36,6 +36,7 @@ public class MedicamentoPaciente {
             declaracionEvento.setFloat(4, valorMedicamento);
             declaracionEvento.setDate(5, fecha);
             declaracionEvento.setInt(6, idMedicamento);
+            declaracionEvento.setInt(7, 0);
             declaracionEvento.executeUpdate();
             float nuevoTotal = calcularTotalAcumulado(idHistorial, valorMedicamento);
             agregarNuevoTotal(nuevoTotal, idHistorial);

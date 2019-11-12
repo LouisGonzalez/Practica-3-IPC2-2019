@@ -13,7 +13,7 @@ public class NuevaHospitalizacion {
     private static Connection cn;
     private static Conexion login;
     private static final String NUEVO_HISTORIAL_MEDICO = "INSERT INTO No_historial_medico (id, cui_paciente, nombres, apellidos, dias_hospitalizado, padecimiento, estado, no_cama, no_habitacion, fecha_historial_medico, id_enfermera_mando, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String EVENTO_HISTORIAL_MEDICO = "INSERT INTO Historial_medico (id, id_historial_medico, evento, cobro, fecha_evento, id_medicamento) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String EVENTO_HISTORIAL_MEDICO = "INSERT INTO Historial_medico (id, id_historial_medico, evento, cobro, fecha_evento, id_medicamento, id_empleado_pago) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String ID_HISTORIAL_MEDICO = "SELECT * FROM No_historial_medico ORDER BY id DESC LIMIT 1";
     private static final String CAMA = "UPDATE Camas SET estado = ? WHERE id = ?";
     private static final String ESTADO_CAMA = "OCUPADA";
@@ -74,6 +74,7 @@ public class NuevaHospitalizacion {
         declaracionEvento.setFloat(4, 0);
         declaracionEvento.setDate(5, fechaEvento);
         declaracionEvento.setInt(6, 0);
+        declaracionEvento.setInt(7, 0);
         declaracionEvento.executeUpdate();
     }
     

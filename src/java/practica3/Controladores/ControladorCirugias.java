@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import practica3.funcionesMedico.CirugiaPaciente;
+import practica3.funcionesRecursosHumanos.NuevoTipoCirugia;
+import practica3.objetos.Cirugias;
 
 /**
  *
@@ -17,7 +19,12 @@ import practica3.funcionesMedico.CirugiaPaciente;
  */
 public class ControladorCirugias extends HttpServlet {
 
+    private static final String DATO_TARIFA = "SELECT * FROM Tarifas_cirugias WHERE descripcion = ?";
+    private static final String DATO_COSTOS = "SELECT * FROM Costos_cirugias WHERE descripcion = ?";
     private final CirugiaPaciente cirugia = new CirugiaPaciente();
+    private final NuevoTipoCirugia tipo = new NuevoTipoCirugia();
+    private Cirugias nuevo;
+   
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,7 +80,7 @@ public class ControladorCirugias extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
-        int numFilas;
+        int numFilas, idCirugia, idAsignacion;
         try {
 
             switch (accion) {
@@ -90,12 +97,42 @@ public class ControladorCirugias extends HttpServlet {
                     request.getRequestDispatcher("pacientes-medico.jsp").forward(request, response);
                     break;
                 case "Marcar como finalizada":
-                    numFilas = (int) session.getAttribute("filas");
-                    cirugia.finalizarCirugia(numFilas, request, session);
+                    nuevo = new Cirugias();
+                    idCirugia = Integer.parseInt(request.getParameter("id"));
+                    nuevo.setId_historial_medico((int) session.getAttribute("idHMedico"));
+                    nuevo.setFecha_cirugia(cirugia.obtenerFechaCirugia(idCirugia));
+                    nuevo.setTipo_operacion(cirugia.obtenerNombreCirugia(idCirugia));
+                    nuevo.setPrecio_cirugia(cirugia.calcularTotales(nuevo.getTipo_operacion(), DATO_TARIFA));  
+                    nuevo.setCosto_cirugia(cirugia.calcularTotales(nuevo.getTipo_operacion(), DATO_COSTOS));
+                    cirugia.finalizarCirugia(idCirugia);
+                    cirugia.crearEventoCirugia(idCirugia, nuevo);
+                    cirugia.crearCostoCirugia(nuevo);
+                    cirugia.asignarPagoMedicos(idCirugia, nuevo);
                     request.getRequestDispatcher("cirugias-activas.jsp").forward(request, response);
                     break;
                 case "Asignaciones":
-                    
+                    idCirugia = Integer.parseInt(request.getParameter("id"));
+                    session.setAttribute("idCirugia", idCirugia);
+                    request.getRequestDispatcher("medicos-asignados-cirugia.jsp").forward(request, response);
+                    break;
+                case "Reemplazar":
+                    idAsignacion = Integer.parseInt(request.getParameter("id"));
+                    session.setAttribute("idAsignacion", idAsignacion);
+                    request.getRequestDispatcher("reemplazo-medico-cirugia.jsp").forward(request, response);
+                    break;
+                case "Guardar reemplazo":
+                    numFilas = (int) session.getAttribute("filas");
+                    idAsignacion = (int) session.getAttribute("idAsignacion");
+                    cirugia.reemplazarMedico(numFilas, request, session, idAsignacion);
+                    break;
+                case "Registrar operacion":
+                    nuevo = new Cirugias();
+                    nuevo.setTipo_operacion(request.getParameter("descripcion"));
+                    nuevo.setCosto_cirugia(Float.parseFloat(request.getParameter("costo")));
+                    nuevo.setPrecio_cirugia(Float.parseFloat(request.getParameter("precio")));
+                    tipo.crearCosto(nuevo);
+                    tipo.crearPrecio(nuevo);
+                    request.getRequestDispatcher("perfil-recursos-humanos.jsp").forward(request, response);
                     break;
             }
         } catch (SQLException ex) {

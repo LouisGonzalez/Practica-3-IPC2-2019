@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import practica3.funcionesEnfermeria.MedicamentoPaciente;
+import practica3.funcionesMedico.AltaMedica;
+import practica3.objetos.Facturas;
+import practica3.objetos.SesionEmpleados;
 
 /**
  *
@@ -20,6 +23,8 @@ import practica3.funcionesEnfermeria.MedicamentoPaciente;
 public class ControladorHistorialMedico extends HttpServlet {
 
     private final MedicamentoPaciente medicamento = new MedicamentoPaciente();
+    private final AltaMedica alta = new AltaMedica();
+    private Facturas factura;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,6 +80,8 @@ public class ControladorHistorialMedico extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
+        SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
+        
         int idHistorial, idMedicina;
         try {
             switch (accion) {
@@ -105,6 +112,35 @@ public class ControladorHistorialMedico extends HttpServlet {
                 case "Ver cirugias":
                     request.getRequestDispatcher("cirugias-activas.jsp").forward(request, response);
                     break;
+                case "Alta medica":
+                    request.getRequestDispatcher("alta-medica.jsp").forward(request, response);
+                    break;
+                case "Dar de alta medica":
+                    idHistorial = (int) session.getAttribute("idHMedico");
+                    Date fechaFinal = Date.valueOf(request.getParameter("fechaSalida"));
+                    int idMedico = sesion.getId();
+                    factura = new Facturas();
+                    factura.setNombres(request.getParameter("nombres"));
+                    factura.setApellidos(request.getParameter("apellidos"));
+                    factura.setNit(Integer.parseInt(request.getParameter("nit")));
+                    factura.setCiudad(request.getParameter("ciudad"));
+                    alta.crearUltimoEvento(idHistorial, fechaFinal, factura, idMedico);
+                    request.getRequestDispatcher("pacientes-medico.jsp").forward(request, response);
+                    break;
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    //AL VOLVER AGREGAR EL EVENTO A LOS PAGOS PENDIENTES DE LAS CONSULTAS
+                    
+                    
+                    
+                    
+                    
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorHistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
