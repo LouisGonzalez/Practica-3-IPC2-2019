@@ -25,13 +25,17 @@
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                            Tarifas
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="tarifa-pagos-cirugia.jsp">Tarifa de pago por cirugia</a>
+                            <a class="dropdown-item" href="tarifa-cobro-cirugia.jsp">Tarifa de cobro por cirugia</a>
+                            <a class="dropdown-item" href="tarifa-costo-cirugia.jsp">Tarifa de costo por cirugia</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="cuotas-estadia-hospital.jsp">Precio/costo por estadia dentro del hospital</a>
+                            <a class="dropdown-item" href="dias-vacacionales.jsp">No. dias vacacionales</a>
+                            <a class="dropdown-item" href="salarios-hospital.jsp">Salarios dentro del hospital</a>
+                        
                         </div>
                     </li>
                     <li class="nav-item">

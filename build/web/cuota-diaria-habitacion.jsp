@@ -49,8 +49,8 @@
                         int x = 0;
                         if(listar.size() > 0){
                             for(Habitaciones listar2 : listar){
-                                habitacion = listar2;
-                                x++;
+            habitacion = listar2;
+                x++;
                     %>
                     <tr>
                         <td scope="row"><%=x%></td>
@@ -60,14 +60,14 @@
                         <td><%=habitacion.getCosto_diario()%></td>
                             <form action="ControladorHabitaciones?id=<%=habitacion.getId()%>" method="POST">
                                 
-                        <td><input type="number" name="nuevoTotal" step=".01" class="form-control"></td>
+                        <td><input type="number" name="nuevoTotal" step=".01" class="form-control" required></td>
                         <td>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="Cambiar cuota">Cambiar cuota</button>                
                         </td>
                             </form>
                         
                     </tr>
-                        <%} 
+                    <%}
                     }%>
                 </tbody>
             </table>    

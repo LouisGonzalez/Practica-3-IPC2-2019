@@ -48,6 +48,10 @@
         <servlet-name>ControladorCirugias</servlet-name>
         <servlet-class>practica3.Controladores.ControladorCirugias</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorTarifas</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorTarifas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ControladorCirugias</servlet-name>
         <url-pattern>/ControladorCirugias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorTarifas</servlet-name>
+        <url-pattern>/ControladorTarifas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

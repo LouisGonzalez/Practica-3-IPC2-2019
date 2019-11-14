@@ -43,9 +43,7 @@ public class AltaMedica {
         actualizarDias(idHistorial, diasTotales);
         eventoPagoEstadia(idHistorial, totalEstadia, fechaFinal, factura, idMedico);
         eventoCostoEstadia(idHistorial, totalCosto);
-        login.Desconectar();
-        
-        
+        login.Desconectar();        
     }
   
     private void actualizarHistorial(int idHistorial) throws SQLException{
@@ -91,8 +89,7 @@ public class AltaMedica {
         declaracionFactura.setFloat(8, totalFinal);
         declaracionFactura.setInt(9, factura.getNit());
         declaracionFactura.setInt(10, idMedico);
-        declaracionFactura.executeUpdate();
-        
+        declaracionFactura.executeUpdate();     
     }
 
     private void eventoCostoEstadia(int idHistorial, float costoTotal) throws SQLException{
