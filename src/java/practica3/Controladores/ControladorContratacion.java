@@ -78,7 +78,6 @@ public class ControladorContratacion extends HttpServlet {
         int cuiEmpleado = Integer.parseInt(request.getParameter("cui"));
         //int idSupervisor = Integer.parseInt(request.getParameter("idSupervisor"));
         try {
-        
             switch (accion) {
                 case "confirmar":
                     empleado = new Empleados();
@@ -89,7 +88,7 @@ public class ControladorContratacion extends HttpServlet {
                     empleado.setTipo_contratacion(request.getParameter("tipoContratacion"));
                     empleado.setArea_trabajo(area);
                     empleado.setFecha_contratacion(Date.valueOf(request.getParameter("fecha")));
-                    contratacion.crearEmpleado(empleado, request, response);
+                    contratacion.crearEmpleado(empleado, request, response);                   
                     session.setAttribute("nuevoEmpleado", empleado);
                     if(area.equals("Medicos")) {
                         request.getRequestDispatcher("tipo-medico.jsp").forward(request, response);
@@ -111,7 +110,7 @@ public class ControladorContratacion extends HttpServlet {
                 case "Confirmar Area":
                     supervisor = new Supervisor();
                     supervisor.setArea_trabajo(request.getParameter("areaSupervisor"));
-                    contratacion.crearSupervisor(supervisor, cuiEmpleado);                    
+                    contratacion.crearSupervisor(supervisor, cuiEmpleado); 
                     break;
                 case "Asignar supervisor":
                     Empleados empleado1 = (Empleados) session.getAttribute("nuevoEmpleado");    
@@ -125,8 +124,7 @@ public class ControladorContratacion extends HttpServlet {
                     contratacion.crearMedico(empleado, especialidad, tipo);
                     if(tipo.equals("Medico")){
                         contratacion.crearHistorial(empleado2);
-                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                    
-                    
+                        vacaciones.creacionFechasAleatorias(cuiEmpleado);                                        
                     }
                     request.getRequestDispatcher("supervisor-inmediato.jsp").forward(request, response);
                     break;

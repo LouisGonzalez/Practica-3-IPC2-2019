@@ -36,9 +36,7 @@ public class VerificarContratador {
                     break;
                 case "Recursos Humanos":
                     request.getRequestDispatcher("perfil-recursos-humanos.jsp").forward(request, response);
-                    break;
-                
-                    
+                    break;           
             }
         }
         login.Desconectar();

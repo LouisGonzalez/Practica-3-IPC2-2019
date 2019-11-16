@@ -270,4 +270,12 @@ CREATE TABLE Costos_cirugias (
 
 ALTER TABLE Costos_cirugias ADD UNIQUE (descripcion);
 	
+CREATE TABLE Pagos_empleados (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_empleado INT NOT NULL,
+	no_mes INT NOT NULL,
+	total DEC(7,2) NOT NULL,
+	INDEX (id_empleado),
+	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
+);
 

@@ -3,7 +3,6 @@
     Created on : 20/10/2019, 12:00:09 PM
     Author     : luisitopapurey
 --%>
-
 <%@page import="java.sql.*"%>
 <%@page import="practica3.conexion.Conexion"%>
 <%@page import="practica3.objetos.SesionEmpleados"%>
@@ -44,11 +43,8 @@
                 <option value="Contratacion por servicios o temporadas">Contratacion por servicios o temporadas</option>
             </select><br><br>
             <input type="date" id="fecha" name="fecha" clas="form-control" required><br><br>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="confirmar">Confirmar</button>
-                    
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="confirmar">Confirmar</button>                    
         </form>
-        
-        
         <jsp:include page="EstilosPerfiles/scripts.html"/>
     </body>
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import practica3.funcionesAutomaticas.PagoEmpleados;
 import practica3.funcionesGenerales.Sesion;
 import practica3.objetos.SesionEmpleados;
 
