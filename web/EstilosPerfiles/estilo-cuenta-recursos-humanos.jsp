@@ -35,6 +35,18 @@
                             <a class="dropdown-item" href="salarios-hospital.jsp">Salarios dentro del hospital</a>                        
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reportes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="reporte-empleados-contratados.jsp">Reporte empleados contratados</a>
+                            <a class="dropdown-item" href="reporte-empleados-fuera.jsp">Reporte empleados fuera de la empresa</a>
+                            <a class="dropdown-item" href="reporte-medicos.jsp">Reporte Medicos</a>
+                            
+                        </div>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>

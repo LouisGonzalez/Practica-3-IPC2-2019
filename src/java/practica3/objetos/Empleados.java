@@ -9,9 +9,17 @@ import java.sql.Date;
 public class Empleados {
     
     private String nombres, apellidos, area_trabajo, tipo_contratacion;
-    private int edad, CUI, id;
+    private int edad, CUI, id, id_historial_laboral;
     private Date fecha_contratacion;
 
+    public int getId_historial_laboral() {
+        return id_historial_laboral;
+    }
+
+    public void setId_historial_laboral(int id_historial_laboral) {
+        this.id_historial_laboral = id_historial_laboral;
+    }
+    
     public int getId() {
         return id;
     }

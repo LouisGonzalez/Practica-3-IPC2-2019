@@ -100,8 +100,7 @@ public class Sesion {
                         pago.calcularDiasEmpleado(idEmpleado);                    
                         break;
                     default:                        
-                        request.getRequestDispatcher("inicio-sesion.jsp").forward(request, response);
-                        
+                        request.getRequestDispatcher("inicio-sesion.jsp").forward(request, response);                        
                         break;
                 }
             } else {

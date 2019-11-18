@@ -52,6 +52,14 @@
         <servlet-name>ControladorTarifas</servlet-name>
         <servlet-class>practica3.Controladores.ControladorTarifas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorReportesFarmacia</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorReportesFarmacia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorReportesRHumanos</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorReportesRHumanos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>ControladorTarifas</servlet-name>
         <url-pattern>/ControladorTarifas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorReportesFarmacia</servlet-name>
+        <url-pattern>/ControladorReportesFarmacia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorReportesRHumanos</servlet-name>
+        <url-pattern>/ControladorReportesRHumanos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

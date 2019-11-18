@@ -7,32 +7,36 @@
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/consultas-por-pagar.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesRecursosHumanos/SalariosHospitalDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/EventoHLaboral.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesAutomaticas/PagoEmpleados.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/ventas-prestablecidas.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/Medicamentos.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesMedico/ConsultasPendientesDAO.java</file>
-            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/EstilosPerfiles/estilo-cuenta-recursos-humanos.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesRecursosHumanos/DiasVacacionalesDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesConsultor/CamasHabitacionesDAO.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/reportesFarmacia/ReporteMedicamentos.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesAdministrador/ListadoHabitacionesDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesSupervisor/UsuariosSupervisadosDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/tarifa-costo-cirugia.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorReportesRHumanos.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/confirmacion-renuncia.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/info-empleados-supervisor.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorConsultas.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesMedico/CirugiaPaciente.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/cuotas-estadia-hospital.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/historial-laboral.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorSesion.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesSupervisor/FechasVacacionales.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesEnfermeria/EventosPacienteDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/alta-medica.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesMedico/FinalizacionCita.java</file>
-            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/contratacion-personal.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/estilosCss/estilo.css</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesConsultor/ConsultasFinalizadasDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-supervisor.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesAdministrador/CuotasHabitaciones.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorHistorialMedico.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/reporte-empleados-contratados.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/perfil-farmacia.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorReportesFarmacia.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesRecursosHumanos/TarifasCirugiasDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorContratacion.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesConsultor/PagoConsulta.java</file>
@@ -40,14 +44,14 @@
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesEnfermeria/MedicamentoPaciente.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesGenerales/VerificarContratador.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesMedico/CirugiasActivasDAO.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesSupervisor/CambioFechasVacacionales.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/tarifa-cirugia.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesRecursosHumanos/ModificacionCuotasEmpleado.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesConsultor/GenerarConsulta.java</file>
-            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/salarios-hospital.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/area-supervisor.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/confirmacion-venta.jsp</file>
-            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/DAO/SupervisorDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesMedico/AltaMedica.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/reportesSupervisor/ReporteEmpleados.jrxml</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/control-medicamentos-paciente.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesRecursosHumanos/CambioTarifasCirugias.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesEnfermeria/PacientesACargoDAO.java</file>
@@ -55,6 +59,7 @@
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesRecursosHumanos/EstadiaHospital.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/asignacion-medicos-paciente.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorTarifas.java</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/HistorialLaboral.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorHabitaciones.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/Controladores/ControladorCirugias.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesConsultor/HabitacionesDisponiblesDAO.java</file>
@@ -67,6 +72,7 @@
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesSupervisor/DespidoEmpleados.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/funcionesSupervisor/EventosHistorialesDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/camas-hospitalizacion.jsp</file>
+            <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/reportesSupervisor/EmpleadosContratadosDAO.java</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/nuevo-medicamento.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/web/eventos-historial-medico.jsp</file>
             <file>file:/home/luisitopapurey/Escritorio/IPC2/Practica%203/Hospital/src/java/practica3/objetos/TrabajadorHospitalizacion.java</file>

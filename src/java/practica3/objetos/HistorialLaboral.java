@@ -8,10 +8,42 @@ import java.sql.Date;
  */
 public class HistorialLaboral {
     
-    private int id_empleado, id, no_periodo_laboral;
-    private String nombres, apellidos, estado;
+    private int id_empleado, id, no_periodo_laboral, year;
+    private String nombres, apellidos, estado, area_trabajo, tipo_contratacion;
     private float salario_base, salario_descuento;
-    private Date fecha_historial_laboral;
+    private Date fecha_historial_laboral, fecha_contratacion;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+    
+    public String getTipo_contratacion() {
+        return tipo_contratacion;
+    }
+
+    public void setTipo_contratacion(String tipo_contratacion) {
+        this.tipo_contratacion = tipo_contratacion;
+    }
+
+    public String getArea_trabajo() {
+        return area_trabajo;
+    }
+
+    public void setArea_trabajo(String area_trabajo) {
+        this.area_trabajo = area_trabajo;
+    }
+
+    public Date getFecha_contratacion() {
+        return fecha_contratacion;
+    }
+
+    public void setFecha_contratacion(Date fecha_contratacion) {
+        this.fecha_contratacion = fecha_contratacion;
+    }
 
     public int getId_empleado() {
         return id_empleado;
