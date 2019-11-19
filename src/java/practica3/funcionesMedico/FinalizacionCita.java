@@ -14,7 +14,7 @@ public class FinalizacionCita {
     private static Conexion login;
     private static final String FINALIZACION = "UPDATE Consulta SET estado = ? WHERE id = ?";
     private static final String ESTADO = "CONCLUIDA";
-    private static final String PAGO_CONSULTA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";    
+    private static final String PAGO_CONSULTA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico, id_empleado_venta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
     
     public static Connection obtenerConexion(){
         login = new Conexion();

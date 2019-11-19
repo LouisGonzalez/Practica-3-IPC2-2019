@@ -1,5 +1,8 @@
 package practica3.objetos;
 
+import java.util.List;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 /**
  *
  * @author luisGonzalez
@@ -7,9 +10,27 @@ package practica3.objetos;
 public class Medicamentos {
     
     private int id, cant_existencia, limite_existencia;
-    private float costo_unitario, precio_venta;
+    private float costo_unitario, precio_venta, ganancia;
     private String nombre, descripcion;
+    private JRBeanCollectionDataSource source;
 
+    
+    public JRBeanCollectionDataSource getSource() {
+        return source;
+    }
+
+    public void setSource(JRBeanCollectionDataSource source) {
+        this.source = source;
+    }
+    
+    public float getGanancia() {
+        return ganancia;
+    }
+
+    public void setGanancia(float ganancia) {
+        this.ganancia = ganancia;
+    }
+    
     public int getId() {
         return id;
     }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="400" pageHeight="842" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34ccc3df-1782-4acd-a582-de49857dc40d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nombre_consulta" class="java.lang.String"/>
+	<field name="apellido_consulta" class="java.lang.String"/>
+	<field name="fecha_consulta" class="java.sql.Date"/>
+	<field name="total_consulta" class="java.lang.Float"/>
+	<field name="acumulado_consulta" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="184" height="20" uuid="130f0b12-bc58-4f90-b108-a7f49df6dc7c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Pago de Consultas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="0" width="100" height="20" uuid="c36796a2-b30d-4c6a-a961-b86e0aa5bcb2"/>
+				<textFieldExpression><![CDATA[$F{acumulado_consulta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="84" height="20" uuid="de3dfa0b-875e-4c45-ba2c-652812a61115"/>
+				<textFieldExpression><![CDATA[$F{nombre_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="0" width="100" height="20" uuid="09435bc1-28e1-477d-b804-f98447d8a79d"/>
+				<textFieldExpression><![CDATA[$F{apellido_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="0" width="82" height="20" uuid="d9ada2d1-6677-4785-a1b6-748542393c7e"/>
+				<textFieldExpression><![CDATA[$F{fecha_consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="0" width="94" height="20" uuid="0149fa6e-bdac-4e30-a439-42ed58cdea01"/>
+				<textFieldExpression><![CDATA[$F{total_consulta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

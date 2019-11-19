@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="97d752b7-6ec1-4de3-9909-dc6445df1277">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/luisitopapurey/Escritorio/IPC2/Practica 3/Hospital/src/java/practica3/reportesFarmacia/"]]></defaultValueExpression>
+	</parameter>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="costo_unitario" class="java.lang.Float"/>
+	<field name="precio_venta" class="java.lang.Float"/>
+	<field name="ganancia" class="java.lang.Float"/>
+	<field name="source" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="31" y="19" width="496" height="48" uuid="e8935dc0-d979-4749-9dc6-a882b636e725"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ganancias por Medicamento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="31" height="20" uuid="154b313f-aa27-4e05-894d-31bd231b762f"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="2" width="100" height="20" uuid="99278a0d-77de-4610-a2af-0ddfd3cbb063"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="2" width="100" height="20" uuid="6cc60a3c-26f7-41ae-b250-1d5e3f3f4fb6"/>
+				<text><![CDATA[Costo Unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="2" width="100" height="20" uuid="56c28731-bcab-4bb5-a256-110a7b86c748"/>
+				<text><![CDATA[Precio de Venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="2" width="100" height="20" uuid="b6bfb096-055c-4c11-9f9b-0a245f50ec0a"/>
+				<text><![CDATA[Ganancia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="200" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="31" height="20" uuid="7551f8ca-4479-42c0-a123-d14c8d284388"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="1" width="100" height="20" uuid="1ecd9137-e086-4295-8997-7546e7b9c5cd"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="1" width="100" height="20" uuid="d1c6f633-9ccd-45b6-b553-af8d6e74bdf0"/>
+				<textFieldExpression><![CDATA[$F{costo_unitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="1" width="100" height="20" uuid="267517b6-03bc-4571-8be4-fe750b01afc1"/>
+				<textFieldExpression><![CDATA[$F{precio_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="1" width="100" height="20" uuid="37c75190-c587-426a-84c8-47a90963cd2b"/>
+				<textFieldExpression><![CDATA[$F{ganancia}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="31" y="32" width="494" height="154" uuid="f6346be5-d6ec-4799-b193-1512103ce253"/>
+				<dataSourceExpression><![CDATA[$F{source}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubReporteVentasMedicamento.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="18" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

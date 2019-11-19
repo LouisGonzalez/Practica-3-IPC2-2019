@@ -29,8 +29,10 @@
                             Reportes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="reporte-medicamentos-farmacia.jsp">Reporte de medicamentos</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="reporte-medicamentos-farmacia.jsp">Reporte de Medicamentos</a>
+                            <a class="dropdown-item" href="reporte-medicamento-ganancias.jsp">Reporte Ganancias por Medicamento</a>
+                            <a class="dropdown-item" href="reporte-ventas-empleado.jsp">Reporte Ventas por Empleado</a>
+                            
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>

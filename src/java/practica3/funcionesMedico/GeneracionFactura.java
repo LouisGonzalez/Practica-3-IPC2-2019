@@ -16,7 +16,7 @@ public class GeneracionFactura {
     private static Connection cn;
     private static Conexion login;
     private static final String PRECIO = "SELECT * FROM Medicamentos WHERE nombre = ?";
-    private static final String CREACION_FACTURA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String CREACION_FACTURA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico, id_empleado_venta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String ID_FACTURA = "SELECT * FROM Factura ORDER BY id DESC LIMIT 1";
     private static final String CREACION_EVENTO = "INSERT INTO Ventas_factura (id, id_factura, id_medicamento, cant_producto, total, estado, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String ID_MEDICINA = "SELECT * FROM Medicamentos WHERE nombre= ?";
@@ -78,7 +78,7 @@ public class GeneracionFactura {
         return precioVenta;
     }
     
-    public void crearFactura(Facturas factura, int id_empleado_medico) throws SQLException{
+    public void crearFactura(Facturas factura, int id_empleado_medico, int id) throws SQLException{
         obtenerConexion();
         PreparedStatement declaracionFactura = cn.prepareStatement(CREACION_FACTURA);
         declaracionFactura.setInt(1, 0);
@@ -91,6 +91,7 @@ public class GeneracionFactura {
         declaracionFactura.setFloat(8, factura.getTotal());
         declaracionFactura.setInt(9, factura.getNit());
         declaracionFactura.setInt(10, id_empleado_medico);
+        declaracionFactura.setInt(11, id);
         declaracionFactura.executeUpdate();
         login.Desconectar();
     }

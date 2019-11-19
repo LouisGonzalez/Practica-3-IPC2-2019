@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="400" pageHeight="842" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac3ecfe4-643d-47d2-b1cf-bbaf18147f6a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nombre_hospital" class="java.lang.String"/>
+	<field name="apellido_hospital" class="java.lang.String"/>
+	<field name="fecha_hospital" class="java.sql.Date"/>
+	<field name="total_hospital" class="java.lang.Float"/>
+	<field name="acumulado_hospital" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="203" height="20" uuid="024e30df-bbe7-4dbf-ba71-4f873f25d885"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Pagos por Hospitalizacion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="260" y="0" width="100" height="20" uuid="4a17f4b9-7022-4981-9a1c-cf21f902eb56"/>
+				<textFieldExpression><![CDATA[$F{acumulado_hospital}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="57" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="83" height="20" uuid="5f40cf8a-8df7-43e8-ba61-9f2cc457896a"/>
+				<textFieldExpression><![CDATA[$F{nombre_hospital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="0" width="84" height="20" uuid="d125c1cf-ce6f-45d6-b789-1e93ce4d1d9f"/>
+				<textFieldExpression><![CDATA[$F{apellido_hospital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="0" width="100" height="20" uuid="77aa51be-0964-49d9-91ad-149f2fdd62b8"/>
+				<textFieldExpression><![CDATA[$F{total_hospital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="0" width="89" height="20" uuid="421fc75c-65f3-4e98-a3c9-22dc99f51562"/>
+				<textFieldExpression><![CDATA[$F{fecha_hospital}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -2,14 +2,14 @@ package practica3.Controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.sf.jasperreports.engine.JRException;
 import practica3.reportesFarmacia.ReporteMedicamentos;
+import practica3.reportesFarmacia.ReporteVentasEmpleadoDAO;
+import practica3.reportesFarmacia.ReporteVentasMedicamentosDAO;
 
 /**
  *
@@ -17,7 +17,9 @@ import practica3.reportesFarmacia.ReporteMedicamentos;
  */
 public class ControladorReportesFarmacia extends HttpServlet {
 
-    ReporteMedicamentos reporte1 = new ReporteMedicamentos();    
+    ReporteMedicamentos reporte1 = new ReporteMedicamentos(); 
+    ReporteVentasMedicamentosDAO reporte2 = new ReporteVentasMedicamentosDAO();
+    ReporteVentasEmpleadoDAO reporte3 = new ReporteVentasEmpleadoDAO();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,10 +74,23 @@ public class ControladorReportesFarmacia extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
+        Date fecha1, fecha2;
             switch (accion) {
                 case "reporte de medicamentos":
                     reporte1.imprimirReporteMedicamentos();
                     request.getRequestDispatcher("reporte-medicamentos-farmacia.jsp").forward(request, response);
+                    break;
+                case "reporte ganancias medicamento":
+                    fecha1 = Date.valueOf(request.getParameter("fecha1"));
+                    fecha2 = Date.valueOf(request.getParameter("fecha2"));
+                    reporte2.obtenerListarMedicamentos(fecha1, fecha2);
+                    reporte2.imprimir();
+                    request.getRequestDispatcher("reporte-medicamento-ganancias.jsp").forward(request, response);
+                    break;
+                case "reporte ventas empleado":
+                    reporte3.imprimirReporte(request);
+                    reporte3.imprimir();
+                    request.getRequestDispatcher("reporte-ventas-empleado.jsp").forward(request, response);
                     break;
             }
   

@@ -43,6 +43,8 @@
                             <a class="dropdown-item" href="reporte-empleados-contratados.jsp">Reporte empleados contratados</a>
                             <a class="dropdown-item" href="reporte-empleados-fuera.jsp">Reporte empleados fuera de la empresa</a>
                             <a class="dropdown-item" href="reporte-medicos.jsp">Reporte Medicos</a>
+                            <a class="dropdown-item" href="reporte-ingresos.jsp">Reporte de Ingresos</a>
+                            <a class="dropdown-item" href="reporte-perdidas.jsp">Reporte de Perdidas</a>
                             
                         </div>
                     </li>

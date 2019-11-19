@@ -23,8 +23,12 @@
                         <a class="nav-link" href="listado-medicos-consulta.jsp">Listado de medicos dentro del hospital</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="consultas-por-pagar.jsp">Pagos pendientes</a>
+                        <a class="nav-link" href="consultas-por-pagar.jsp">Consultas pendientes</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="hospitalizaciones-por-pagar.jsp">Pagos pendientes</a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="habitaciones-hospitalizacion.jsp">Listado de habitaciones</a>
                     </li>

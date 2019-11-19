@@ -60,6 +60,10 @@
         <servlet-name>ControladorReportesRHumanos</servlet-name>
         <servlet-class>practica3.Controladores.ControladorReportesRHumanos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorReportesAdmin</servlet-name>
+        <servlet-class>practica3.Controladores.ControladorReportesAdmin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorSesion</servlet-name>
         <url-pattern>/ControladorSesion</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ControladorReportesRHumanos</servlet-name>
         <url-pattern>/ControladorReportesRHumanos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorReportesAdmin</servlet-name>
+        <url-pattern>/ControladorReportesAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

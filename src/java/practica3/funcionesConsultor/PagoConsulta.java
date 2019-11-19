@@ -12,7 +12,7 @@ public class PagoConsulta {
     
     private static Connection cn;
     private static Conexion login;
-    private static final String PAGO_CONSULTA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
+    private static final String PAGO_CONSULTA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico, id_empleado_venta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";    
     private static final String DATO_CONSULTA = "SELECT * FROM Consulta WHERE id = ?";
     private static final String TOTAL_CONSULTA = "SELECT * FROM Tarifas WHERE id = 2";
     private static final String CONSULTA_CANCELADA = "UPDATE Consulta SET estado = ? WHERE id = ?";
@@ -25,7 +25,7 @@ public class PagoConsulta {
     }
     
     //crea la factura dentro del sistema
-    public void pagoCita(Facturas factura) throws SQLException{
+    public void pagoCita(Facturas factura, int id) throws SQLException{
         obtenerConexion();
         PreparedStatement declaracionPago = cn.prepareStatement(PAGO_CONSULTA);
         declaracionPago.setInt(1, 0);
@@ -38,6 +38,7 @@ public class PagoConsulta {
         declaracionPago.setFloat(8, factura.getTotal());
         declaracionPago.setInt(9, factura.getNit());
         declaracionPago.setInt(10, factura.getId_empleado_medico());
+        declaracionPago.setInt(11, id);
         declaracionPago.executeUpdate();
         login.Desconectar();
     }

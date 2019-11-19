@@ -81,7 +81,7 @@ public class ControladorHistorialMedico extends HttpServlet {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
         SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
-        
+        int id = sesion.getId();
         int idHistorial, idMedicina;
         try {
             switch (accion) {
@@ -124,23 +124,9 @@ public class ControladorHistorialMedico extends HttpServlet {
                     factura.setApellidos(request.getParameter("apellidos"));
                     factura.setNit(Integer.parseInt(request.getParameter("nit")));
                     factura.setCiudad(request.getParameter("ciudad"));
-                    alta.crearUltimoEvento(idHistorial, fechaFinal, factura, idMedico);
+                    alta.crearUltimoEvento(idHistorial, fechaFinal, factura, idMedico, id);
                     request.getRequestDispatcher("pacientes-medico.jsp").forward(request, response);
                     break;
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    //AL VOLVER AGREGAR EL EVENTO A LOS PAGOS PENDIENTES DE LAS CONSULTAS
-                    
-                    
-                    
-                    
-                    
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorHistorialMedico.class.getName()).log(Level.SEVERE, null, ex);

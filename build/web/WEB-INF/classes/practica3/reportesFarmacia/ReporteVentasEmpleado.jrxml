@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c25f31a-b8b3-4889-b876-ee2dad1cd5d4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/luisitopapurey/Escritorio/IPC2/Practica 3/Hospital/src/java/practica3/reportesFarmacia/"]]></defaultValueExpression>
+	</parameter>
+	<field name="id_empleado_venta" class="java.lang.Integer"/>
+	<field name="nombre_empleado" class="java.lang.String"/>
+	<field name="apellido_empleado" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="fecha_factura" class="java.sql.Date"/>
+	<field name="total" class="java.lang.Float"/>
+	<field name="source" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="49" y="21" width="473" height="42" uuid="13ab8593-d4b5-4a5a-ab42-07aa9173d936"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ventas por Empleado]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="68" height="20" uuid="0de0c148-facb-4941-b536-15c9d0c9e6fc"/>
+				<text><![CDATA[Id Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="0" width="84" height="20" uuid="ac99b4fb-89ef-4a21-b845-44faee4ce672"/>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="0" width="84" height="20" uuid="5cfd9ed8-81ba-4ba1-b773-6724fcee8232"/>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="0" width="54" height="20" uuid="bd9b2ecb-ddec-4aa8-85fd-3be6dead9a0c"/>
+				<text><![CDATA[Id Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="100" height="20" uuid="250b1f2c-8d6a-4934-8b43-b299d94806ec"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="100" height="20" uuid="78334994-d552-4c3d-b30e-d180ee316d2d"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="149" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="68" height="20" uuid="5dafac32-9bb3-47c5-a5f7-764b00e5316b"/>
+				<textFieldExpression><![CDATA[$F{id_empleado_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="0" width="84" height="20" uuid="27b782dd-edf7-4764-a9cd-020f051ee6f4"/>
+				<textFieldExpression><![CDATA[$F{nombre_empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="0" width="84" height="20" uuid="dbbe902a-2ccd-426b-b647-702c3c19d803"/>
+				<textFieldExpression><![CDATA[$F{apellido_empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="0" width="54" height="20" uuid="fb982bec-d3db-4086-a7be-41a33b6c20f2"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="100" height="20" uuid="ff9e9dc5-cacd-43c4-b8aa-97bf48b01316"/>
+				<textFieldExpression><![CDATA[$F{fecha_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="100" height="20" uuid="3e78a590-02f2-41cb-9761-042dbb9a4c9f"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="19" y="31" width="536" height="118" uuid="da7d42cd-dcf0-448f-a1e1-3911c436894b"/>
+				<dataSourceExpression><![CDATA[$F{source}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubReporteVentasEmpleado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

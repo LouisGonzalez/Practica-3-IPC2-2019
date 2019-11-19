@@ -1,29 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7bbaa422-cd11-4391-9c54-a52f2d34a712">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="id_empleado" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="area_trabajo" class="java.lang.String"/>
+	<field name="tipo_contratacion" class="java.lang.String"/>
+	<field name="no_periodo_laboral" class="java.lang.Integer"/>
+	<field name="salario_base" class="java.lang.Float"/>
+	<field name="salario_descuento" class="java.lang.Float"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="year" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="21" width="555" height="42" uuid="672b9a32-d81b-451f-a05f-229e53a37f17"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte empleados despedidos/con renuncia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="41" height="20" uuid="944de0b0-1d75-4cc7-827b-830b99a5f8a1"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="0" width="43" height="20" uuid="d2356133-1a3d-4581-9b2a-ebeae4069b45"/>
+				<text><![CDATA[Id historial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="0" width="79" height="20" uuid="16c11adf-6a08-4160-870f-6346ff22f8cc"/>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="0" width="83" height="20" uuid="04039138-2ada-4727-b1bb-3d539d7769c4"/>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="0" width="77" height="20" uuid="921184a6-4d19-46ff-aaa2-e1fd80994bc8"/>
+				<text><![CDATA[Area]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="323" y="0" width="78" height="20" uuid="f4629c1b-33e8-4ab6-b5cc-ffcdbf809a33"/>
+				<text><![CDATA[Salario base]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="0" width="71" height="20" uuid="f881ccf0-08ac-4345-aa87-0c209c74d947"/>
+				<text><![CDATA[Salario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="0" width="83" height="20" uuid="e3b602e1-805d-41db-8068-62e2be74f6be"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="41" height="20" uuid="3da2b170-41f5-4d13-b107-280a92c70340"/>
+				<textFieldExpression><![CDATA[$F{id_empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="0" width="43" height="20" uuid="b1bd0305-1605-4c1c-8988-cd0582c3f012"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="0" width="79" height="20" uuid="5a8f67dd-f5c9-4e55-96a9-327952a4a54a"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="0" width="83" height="20" uuid="a7ad50c3-12d1-4d6b-ae32-54d3b2e9cb10"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="0" width="77" height="20" uuid="27641380-ec48-4ad9-af16-7725ca234a99"/>
+				<textFieldExpression><![CDATA[$F{area_trabajo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="78" height="20" uuid="6f354bac-bd4b-49d2-aff2-dca0812347c7"/>
+				<textFieldExpression><![CDATA[$F{salario_base}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="71" height="20" uuid="58db388b-30dd-4a4c-a402-e5e40498a313"/>
+				<textFieldExpression><![CDATA[$F{salario_descuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="83" height="20" uuid="d5e42ba1-4e5c-4c98-8b5d-663048314397"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="23" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

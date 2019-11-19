@@ -16,10 +16,11 @@ public class AltaMedica {
     private static final String ACTUALIZACION_TOTAL = "UPDATE No_historial_medico SET total = ? WHERE id = ?";
     private static final String ACTUALIZACION_DIAS = "UPDATE No_historial_medico SET dias_hospitalizado = ? WHERE id = ?";
     private static final String NUEVO_EVENTO_HISTORIAL = "INSERT INTO Historial_medico (id, id_historial_medico, evento, cobro, fecha_evento, id_medicamento, id_empleado_pago) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String NUEVO_EVENTO_COSTO = "INSERT INTO Costos_historial_medico (id, id_historial_medico, evento, total) VALUES (?, ?, ?, ?)";
+    private static final String NUEVO_EVENTO_COSTO = "INSERT INTO Costos_historial_medico (id, id_historial_medico, evento, total, id_evento_historial) VALUES (?, ?, ?, ?, ?)";
     private static final String DATO_HISTORIAL = "SELECT * FROM No_historial_medico WHERE id = ?";
     private static final String DATO_TARIFA = "SELECT * FROM Tarifas WHERE id = ?";
-    private static final String NUEVA_FACTURA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String NUEVA_FACTURA = "INSERT INTO Factura (id, nombres, apellidos, ciudad, fecha_factura, estado, tipo, total, nit, id_empleado_medico, id_empleado_venta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String ULTIMO_EVENTO = "SELECT * FROM Historial_medico ORDER BY id DESC LIMIT 1";
     private static final String EVENTO = "ALTA MEDICA";
     private static final String ESTADO = "CONCLUIDO";
     private static final String ESTADO_FACTURA = "PENDIENTE";
@@ -32,7 +33,7 @@ public class AltaMedica {
         return cn;
     }
     
-    public void crearUltimoEvento(int idHistorial, Date fechaFinal, Facturas factura, int idMedico) throws SQLException{
+    public void crearUltimoEvento(int idHistorial, Date fechaFinal, Facturas factura, int idMedico, int id) throws SQLException{
         obtenerConexion();
         tarifaDiaria = verTarifasEstadia(18);
         costoDiario = verTarifasEstadia(19);
@@ -41,7 +42,7 @@ public class AltaMedica {
         totalCosto = costoDiario * diasTotales;
         actualizarHistorial(idHistorial);
         actualizarDias(idHistorial, diasTotales);
-        eventoPagoEstadia(idHistorial, totalEstadia, fechaFinal, factura, idMedico);
+        eventoPagoEstadia(idHistorial, totalEstadia, fechaFinal, factura, idMedico, id);
         eventoCostoEstadia(idHistorial, totalCosto);
         login.Desconectar();        
     }
@@ -61,7 +62,7 @@ public class AltaMedica {
     } 
     
     
-    private void eventoPagoEstadia(int idHistorial, float totalEstadia, Date fechaFinal, Facturas factura, int idMedico) throws SQLException{
+    private void eventoPagoEstadia(int idHistorial, float totalEstadia, Date fechaFinal, Facturas factura, int idMedico, int id) throws SQLException{
         PreparedStatement declaracionEvento = cn.prepareStatement(NUEVO_EVENTO_HISTORIAL);
         declaracionEvento.setInt(1, 0);
         declaracionEvento.setInt(2, idHistorial);
@@ -73,11 +74,31 @@ public class AltaMedica {
         declaracionEvento.executeUpdate();
         float nuevoTotal = calcularTotalAcumulado(idHistorial, totalEstadia);
         agregarNuevoTotal(nuevoTotal, idHistorial);
-        
-        crearFactura(factura, fechaFinal, nuevoTotal, idMedico);
+        crearFactura(factura, fechaFinal, nuevoTotal, idMedico, id);
     }
     
-    private void crearFactura(Facturas factura, Date fecha, float totalFinal, int idMedico) throws SQLException{
+    private int obtenerIdEvento() throws SQLException{
+        int idEvento = 0;
+        PreparedStatement declaracionEvento =cn.prepareStatement(ULTIMO_EVENTO);
+        ResultSet result = declaracionEvento.executeQuery();
+        while(result.next()){
+            idEvento = result.getInt("id");
+        }
+        return idEvento;
+    }
+    
+    private void eventoCostoEstadia(int idHistorial, float costoTotal) throws SQLException{
+        int idEvento = obtenerIdEvento();
+        PreparedStatement declaracionCosto = cn.prepareStatement(NUEVO_EVENTO_COSTO);
+        declaracionCosto.setInt(1, 0);
+        declaracionCosto.setInt(2, idHistorial);
+        declaracionCosto.setString(3, EVENTO);
+        declaracionCosto.setFloat(4, costoTotal);
+        declaracionCosto.setInt(5, idEvento);
+        declaracionCosto.executeUpdate();
+    }
+    
+    private void crearFactura(Facturas factura, Date fecha, float totalFinal, int idMedico, int id) throws SQLException{
         PreparedStatement declaracionFactura = cn.prepareStatement(NUEVA_FACTURA);
         declaracionFactura.setInt(1, 0);
         declaracionFactura.setString(2, factura.getNombres());
@@ -89,16 +110,8 @@ public class AltaMedica {
         declaracionFactura.setFloat(8, totalFinal);
         declaracionFactura.setInt(9, factura.getNit());
         declaracionFactura.setInt(10, idMedico);
+        declaracionFactura.setInt(11, id);
         declaracionFactura.executeUpdate();     
-    }
-
-    private void eventoCostoEstadia(int idHistorial, float costoTotal) throws SQLException{
-        PreparedStatement declaracionCosto = cn.prepareStatement(NUEVO_EVENTO_COSTO);
-        declaracionCosto.setInt(1, 0);
-        declaracionCosto.setInt(2, idHistorial);
-        declaracionCosto.setString(3, EVENTO);
-        declaracionCosto.setFloat(4, costoTotal);
-        declaracionCosto.executeUpdate();
     }
     
     private int calcularTotalDias(Date fechaFinal, int idHistorial) throws SQLException{

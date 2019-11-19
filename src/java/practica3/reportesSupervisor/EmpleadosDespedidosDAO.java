@@ -1,5 +1,8 @@
 package practica3.reportesSupervisor;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -11,11 +14,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.export.SimpleExporterConfiguration;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.view.JasperViewer;
 import practica3.conexion.Conexion;
 import practica3.objetos.HistorialLaboral;
 
@@ -36,6 +37,15 @@ public class EmpleadosDespedidosDAO {
         return cn;
     }
     
+    public void imprimir(){
+        File objetoFile = new File("ReporteEmpleadosDespedidos.pdf");
+        try {
+            Desktop.getDesktop().open(objetoFile);
+        } catch (IOException ex) {
+            Logger.getLogger(EmpleadosDespedidosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void imprimirReporteEmpleados(Date fechaInicial, Date fechaFinal, HttpServletRequest request, String area){
         JasperPrint jasperPrint2;
         try {
@@ -43,15 +53,9 @@ public class EmpleadosDespedidosDAO {
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint2));
             exp.setExporterOutput(new SimpleOutputStreamExporterOutput("ReporteEmpleadosDespedidos.pdf"));
-            /*SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
-            exp.exportReport();*/
-            
-            
-            
-            JasperViewer view = new JasperViewer(jasperPrint2);
-            view.setVisible(true);
-            
+            exp.exportReport();
         } catch (JRException ex) {
             Logger.getLogger(EmpleadosDespedidosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

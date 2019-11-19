@@ -139,8 +139,11 @@ CREATE TABLE Factura (
 	total DEC(7,2) NOT NULL,
 	nit INT NOT NULL,
 	id_empleado_medico INT NOT NULL,
+	id_empleado_venta INT NOT NULL,
 	INDEX (id_empleado_medico),
-	FOREIGN KEY (id_empleado_medico) REFERENCES Empleados(id)
+	INDEX (id_empleado_venta),
+	FOREIGN KEY (id_empleado_medico) REFERENCES Empleados(id),
+	FOREIGN KEY (id_empleado_venta) REFERENCES Empleados(id)
 );
 
 CREATE TABLE Ventas_factura (
@@ -251,7 +254,10 @@ CREATE TABLE Costos_historial_medico (
 	id_historial_medico INT NOT NULL,
 	evento VARCHAR(70) NOT NULL,
 	total DEC(7,2) NOT NULL,
+	id_evento_historial INT NOT NULL
 	INDEX (id_historial_medico),
+	INDEX (id_evento_historial),
+	FOREIGN KEY (id_evento_historial) REFERENCES Historial_medico(id),
 	FOREIGN KEY (id_historial_medico) REFERENCES No_historial_medico(id)		
 );
 
@@ -275,6 +281,7 @@ CREATE TABLE Pagos_empleados (
 	id_empleado INT NOT NULL,
 	no_mes INT NOT NULL,
 	total DEC(7,2) NOT NULL,
+	fecha_pago DATE NOT NULL,
 	INDEX (id_empleado),
 	FOREIGN KEY (id_empleado) REFERENCES Empleados(id)
 );

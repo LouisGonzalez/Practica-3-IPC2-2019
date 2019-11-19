@@ -18,14 +18,13 @@ public class VentaMedicamentos {
     private static Connection cn;
     private static Conexion login;
     private static final String CANT_EXISTENCIA = "SELECT * FROM Medicamentos WHERE id = ?";
-    private static final String ID_VENTAS = "SELECT * FROM Ventas_factura WHERE id = ?";
     private static final String NUEVO_TOTAL = "UPDATE Factura SET total = ? WHERE id = ?";
     private static final String VENTA_CANCELADA = "UPDATE Factura SET estado = ? WHERE id = ?";
     private static final String ESTADO = "CANCELADA";
     private static final String ELEMENTOS_INUTILIZADOS = "DELETE FROM Ventas_factura WHERE id = ?";
     private static final String CONFIRMACION_EVENTO = "UPDATE Ventas_factura SET estado = ? WHERE id = ?";
     private static final String CAMBIO_TOTAL_EVENTO = "UPDATE Ventas_factura SET total = ? WHERE id = ?";
-    
+    private static final String CAMBIO_ID_ATENDIDO = "UPDATE Factura SET id_empleado_venta = ? WHERE id = ?";
     private static final String ELEMENTOS_VENTAS_FACTURA = "SELECT * FROM Ventas_factura WHERE id = ?";
     private static final String RESTA_MEDICAMENTOS = "UPDATE Medicamentos SET cant_existencia = ? WHERE id = ?";
     
@@ -95,10 +94,13 @@ public class VentaMedicamentos {
     }
     
     //confirma la venta dentro del sistema
-    public void confirmarCompra(int idFactura, float totalFinal, int numFilas, HttpServletRequest request, HttpSession session) throws SQLException{
+    public void confirmarCompra(int idFactura, float totalFinal, int numFilas, HttpServletRequest request, HttpSession session, int idEmpleado) throws SQLException{
         cambiarEstadoFactura(idFactura);
         cambiarTotal(totalFinal, idFactura);
         comprarMedicamentos(numFilas, request, session);
+        
+        
+        cambioEmpleadoAtendio(idEmpleado, idFactura);
         
         
     }
@@ -197,4 +199,10 @@ public class VentaMedicamentos {
         declaracionCantidad.executeUpdate();
     }
     
+    private void cambioEmpleadoAtendio(int idEmpleado, int idFactura) throws SQLException{
+        PreparedStatement declaracionEmpleado = cn.prepareStatement(CAMBIO_ID_ATENDIDO);
+        declaracionEmpleado.setInt(1, idEmpleado);
+        declaracionEmpleado.setInt(2, idFactura);
+        declaracionEmpleado.executeUpdate();
+    }
 }

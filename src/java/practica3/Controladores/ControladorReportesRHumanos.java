@@ -82,6 +82,7 @@ public class ControladorReportesRHumanos extends HttpServlet {
                 fechaFinal = Date.valueOf(request.getParameter("fechaFinal"));
                 areaTrabajo = request.getParameter("areaTrabajo");
                 reporte1.imprimirReporteMedicamentos(fechaInicial, fechaFinal, request, areaTrabajo);
+                reporte1.imprimir();
                 request.getRequestDispatcher("reporte-empleados-contratados.jsp").forward(request, response);
                 break;
             case "reporte empleados fuera":
@@ -89,11 +90,13 @@ public class ControladorReportesRHumanos extends HttpServlet {
                 fechaFinal = Date.valueOf(request.getParameter("fechaFinal"));
                 areaTrabajo = request.getParameter("areaTrabajo");
                 reporte2.imprimirReporteEmpleados(fechaInicial, fechaFinal, request, areaTrabajo);
+                reporte2.imprimir();
                 request.getRequestDispatcher("reporte-empleados-fuera.jsp").forward(request, response);
                 break;
             case "reporte medicos": 
                 reporte3.imprimirReporte(request);
                 reporte3.imprimir();
+                request.getRequestDispatcher("reporte-medicos.jsp").forward(request, response);
                 break;
             
         }

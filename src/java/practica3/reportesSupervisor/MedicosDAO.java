@@ -16,7 +16,6 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.view.JasperViewer;
 import practica3.conexion.Conexion;
 import practica3.objetos.Medicos;
 
@@ -45,7 +44,6 @@ public class MedicosDAO {
         obtenerConexion();
         String[] parametro = request.getParameterValues("verificador");
         try {
-
             for (String parametro1 : parametro) {
                 switch (parametro1) {
                     //REPORTES MEDICOS GENERAL
@@ -161,7 +159,5 @@ public class MedicosDAO {
         }
         return list;
     }
-    
-    
 
 }

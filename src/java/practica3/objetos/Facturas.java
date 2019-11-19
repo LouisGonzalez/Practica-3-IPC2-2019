@@ -8,11 +8,43 @@ import java.sql.Date;
  */
 public class Facturas {
 
-    private int id, id_empleado_medico, nit;
-    private String nombres, estado, tipo, apellidos, ciudad;
+    private int id, id_empleado_medico, nit, cant_producto, id_empleado_venta;
+    private String nombres, estado, tipo, apellidos, ciudad, nombre_empleado, apellido_empleado;
     private Date fecha_factura;
     private float total;
 
+    public String getNombre_empleado() {
+        return nombre_empleado;
+    }
+
+    public void setNombre_empleado(String nombre_empleado) {
+        this.nombre_empleado = nombre_empleado;
+    }
+
+    public String getApellido_empleado() {
+        return apellido_empleado;
+    }
+
+    public void setApellido_empleado(String apellido_empleado) {
+        this.apellido_empleado = apellido_empleado;
+    }
+    
+    public int getId_empleado_venta() {
+        return id_empleado_venta;
+    }
+
+    public void setId_empleado_venta(int id_empleado_venta) {
+        this.id_empleado_venta = id_empleado_venta;
+    }
+   
+    public int getCant_producto() {
+        return cant_producto;
+    }
+
+    public void setCant_producto(int cant_producto) {
+        this.cant_producto = cant_producto;
+    }
+    
     public int getNit() {
         return nit;
     }

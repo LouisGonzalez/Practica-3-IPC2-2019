@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8ddc872-d508-4366-bd94-812b1406c580">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/luisitopapurey/Escritorio/IPC2/Practica 3/Hospital/src/java/practica3/reportesAdministrador/"]]></defaultValueExpression>
+	</parameter>
+	<field name="source_farmacia" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<field name="source_consulta" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<field name="source_hospital" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="34" y="19" width="486" height="41" uuid="afc6360c-0b69-45a9-a83d-066f938e9649"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ingresos Generales]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="314" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="195" width="555" height="74" uuid="31631332-3f84-458e-aad7-ca7a1a8e50fd"/>
+				<dataSourceExpression><![CDATA[$F{source_consulta}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubReporteIngresosConsulta.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="95" width="555" height="80" uuid="f95cefab-a95f-4691-975a-a3202208e3f7"/>
+				<dataSourceExpression><![CDATA[$F{source_hospital}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubReporteIngresosHospital.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="74" uuid="23f1e618-3414-40ed-b758-44f4f2a38fbc"/>
+				<dataSourceExpression><![CDATA[$F{source_farmacia}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubReporteIngresosFarmacia.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

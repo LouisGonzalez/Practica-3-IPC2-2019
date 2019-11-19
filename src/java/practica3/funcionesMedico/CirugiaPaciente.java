@@ -25,8 +25,9 @@ public class CirugiaPaciente {
     private static final String ID_CIRUGIA = "SELECT * FROM Cirugias ORDER BY id DESC LIMIT 1";
     private static final String CIRUGIA_COMPLETA = "UPDATE Cirugias SET estado = ? WHERE id = ?";
     private static final String EVENTO_HISTORIAL = "INSERT INTO Historial_medico (id, id_historial_medico, evento, cobro, fecha_evento, id_medicamento, id_empleado_pago) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String EVENTO_COSTO_HISTORIAL = "INSERT INTO Costos_historial_medico (id, id_historial_medico, evento, total) VALUES (?, ?, ?, ?)";
+    private static final String EVENTO_COSTO_HISTORIAL = "INSERT INTO Costos_historial_medico (id, id_historial_medico, evento, total, id_evento_historial) VALUES (?, ?, ?, ?, ?)";
     private static final String REEMPLAZO_MEDICO = "UPDATE Trabajadores_paciente_cirugia SET id_empleado = ? WHERE id = ?";
+    private static final String ULTIMO_EVENTO = "SELECT * FROM Historial_medico ORDER BY id DESC LIMIT 1";
     private static final String ESTADO = "ACTIVA";
     private static final String ESTADO2 = "CONCLUIDA";
     private static final String AREA = "Medicos";
@@ -79,14 +80,26 @@ public class CirugiaPaciente {
         declaracionEvento.executeUpdate();
         login.Desconectar(); 
     }                                                                        
-                            
+    
+    private int idEventoHistorial() throws SQLException{
+        int idEvento = 0;
+        PreparedStatement declaracionEvento = cn.prepareStatement(ULTIMO_EVENTO);
+        ResultSet result = declaracionEvento.executeQuery();
+        while(result.next()){
+            idEvento = result.getInt("id");
+        }
+        return idEvento;
+    }
+    
     public void crearCostoCirugia(Cirugias cirugia) throws SQLException{
         obtenerConexion();
+        int idEvento = idEventoHistorial();
         PreparedStatement declaracionCostos = cn.prepareStatement(EVENTO_COSTO_HISTORIAL);
         declaracionCostos.setInt(1, 0);
         declaracionCostos.setInt(2, cirugia.getId_historial_medico());
         declaracionCostos.setString(3, "CIRUGIA");
         declaracionCostos.setFloat(4, cirugia.getCosto_cirugia());
+        declaracionCostos.setInt(5, idEvento);
         declaracionCostos.executeUpdate();
         float nuevoTotal = calcularTotalAcumulado(cirugia.getId_historial_medico(), cirugia.getCosto_cirugia());
         agregarNuevoTotal(nuevoTotal, cirugia.getId_historial_medico());

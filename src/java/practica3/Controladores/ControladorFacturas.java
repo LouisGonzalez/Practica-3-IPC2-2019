@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import practica3.funcionesConsultor.PagoConsulta;
+import practica3.funcionesConsultor.PagoHospitalizacion;
 import practica3.funcionesFarmaceutico.VentaMedicamentos;
 import practica3.funcionesMedico.GeneracionFactura;
 import practica3.objetos.Facturas;
+import practica3.objetos.SesionEmpleados;
 import practica3.objetos.VentasFactura;
 
 /**
@@ -27,6 +29,7 @@ public class ControladorFacturas extends HttpServlet {
     private final PagoConsulta pago = new PagoConsulta();
     private final GeneracionFactura generacion = new GeneracionFactura();
     private final VentaMedicamentos venta = new VentaMedicamentos();
+    private final PagoHospitalizacion pago2 = new PagoHospitalizacion();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,6 +81,8 @@ public class ControladorFacturas extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         HttpSession session = request.getSession();
+        SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
+        int id = sesion.getId();        
         int filas, idFactura;
         boolean verificacion, checkbox, iniciador;
         try {
@@ -96,7 +101,7 @@ public class ControladorFacturas extends HttpServlet {
                     factura.setNit(Integer.parseInt(request.getParameter("nit")));
                     factura.setId_empleado_medico(idEmpleadoMedico);
                     factura.setTotal(totalCancelar);
-                    pago.pagoCita(factura);
+                    pago.pagoCita(factura, id);
                     pago.cancelarConsulta(idCita);
                     request.getRequestDispatcher("consultas-por-pagar.jsp").forward(request, response);
                     break;
@@ -121,7 +126,7 @@ public class ControladorFacturas extends HttpServlet {
                     int idMedico = Integer.parseInt(request.getParameter("idMedico"));
                     factura = (Facturas) session.getAttribute("datosPersonales");
                     //creacion de factura
-                    generacion.crearFactura(factura, idMedico);
+                    generacion.crearFactura(factura, idMedico, id);
                     //creacion de metodos por factura
                     generacion.crearEventosFactura(filas, session);
                     request.getRequestDispatcher("perfil-medicos.jsp").forward(request, response);
@@ -137,8 +142,7 @@ public class ControladorFacturas extends HttpServlet {
                     iniciador = false;
                     session.setAttribute("iniciador", iniciador);
                     session.setAttribute("verificador", verificacion);
-                    session.setAttribute("idFactura", idFactura);
-                    
+                    session.setAttribute("idFactura", idFactura);                    
                     request.getRequestDispatcher("confirmacion-venta.jsp").forward(request, response);
                     break;
                 case "Total final":
@@ -155,10 +159,15 @@ public class ControladorFacturas extends HttpServlet {
                     float totalFinal = Float.valueOf(request.getParameter("totalFinal"));
                     filas = (int) session.getAttribute("filas");
                     idFactura = (int) session.getAttribute("idFactura");
-                    venta.confirmarCompra(idFactura, totalFinal, filas, request, session);
+                    venta.confirmarCompra(idFactura, totalFinal, filas, request, session, id);
                     request.getRequestDispatcher("ventas-prestablecidas.jsp").forward(request, response);
                     break;
-                    
+                case "Cancelar cuenta":
+                    idFactura = Integer.parseInt(request.getParameter("id"));
+                    pago2.actualizarEstado(idFactura);
+                    pago2.actualizarEmpleado(idFactura, id);
+                    request.getRequestDispatcher("hospitalizaciones-por-pagar.jsp").forward(request, response);            
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFacturas.class.getName()).log(Level.SEVERE, null, ex);

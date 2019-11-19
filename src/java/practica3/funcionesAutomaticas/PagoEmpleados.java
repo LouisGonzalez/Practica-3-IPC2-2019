@@ -13,7 +13,7 @@ public class PagoEmpleados {
     private static Connection cn;
     private static Conexion login;
     private static final String CONSULTAS_EMPLEADO = "SELECT * FROM Empleados e JOIN No_historial_laboral n ON e.id = n.id_empleado WHERE e.id = ? AND estado = ?";
-    private static final String CREACION_PAGO = "INSERT INTO Pagos_empleados (id, id_empleado, no_mes, total) VALUES (?, ?, ?, ?)";
+    private static final String CREACION_PAGO = "INSERT INTO Pagos_empleados (id, id_empleado, no_mes, total, fecha_pago) VALUES (?, ?, ?, ?, ?)";
     private static final String EXISTENCIAS = "SELECT * FROM Pagos_empleados WHERE id_empleado = ?";
     private static final String MESES_PAGO = "SELECT * FROM Pagos_empleados WHERE id_empleado = ? ORDER BY id DESC LIMIT 1";
     private static final String PAGO_EMPLEADO = "SELECT * FROM No_historial_laboral WHERE id_empleado = ?";
@@ -50,10 +50,10 @@ public class PagoEmpleados {
         if(existencia == true){
             ultimoMes = verUltimoMes(idEmpleado);
             if(meses > ultimoMes){
-                crearPago(idEmpleado, meses);
+                crearPago(idEmpleado, meses, fechaActual);
             }
         } else {
-            crearPago(idEmpleado, meses);
+            crearPago(idEmpleado, meses, fechaActual);
         }   
         login.Desconectar();
     }
@@ -83,13 +83,14 @@ public class PagoEmpleados {
         return noMes;
     }
       
-    private void crearPago(int idEmpleado, int mes) throws SQLException{
+    private void crearPago(int idEmpleado, int mes, Date fechaPago) throws SQLException{
         float pagoEmpleado = verPago(idEmpleado);
         PreparedStatement declaracionPago = cn.prepareStatement(CREACION_PAGO);
         declaracionPago.setInt(1, 0);
         declaracionPago.setInt(2, idEmpleado);
         declaracionPago.setInt(3, mes);
         declaracionPago.setFloat(4, pagoEmpleado);
+        declaracionPago.setDate(5, fechaPago);
         declaracionPago.executeUpdate();     
     }
     
