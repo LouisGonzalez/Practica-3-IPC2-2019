@@ -19,10 +19,10 @@
                         <a class="nav-link" href="perfil-administrador.jsp">Home <span class="sr-only">(current)</span></a>
               
                     </li>
-                    <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link" href="contratacion-personal.jsp">Contratacion Personal</a>
                     </li>
-                    
+                   
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Habitaciones
@@ -39,8 +39,6 @@
                             Reportes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="reporte-ingresos.jsp">Reporte de Ingresos</a>
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                             <a class="dropdown-item" href="reporte-ingresos.jsp">Reporte de Ingresos</a>
                             <a class="dropdown-item" href="reporte-perdidas.jsp">Reporte de Perdidas</a>
@@ -49,7 +47,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="ControladorSesion">Salir</a>
                     </li>
                 </ul>
             </div>

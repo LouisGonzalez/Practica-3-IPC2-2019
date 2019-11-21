@@ -15,7 +15,7 @@
              
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="perfil-supervisor.jsp">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="historial-laboral.jsp">Historial Laboral</a>
@@ -32,7 +32,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="ControladorSesion">Salir</a>
                     </li>
                 </ul>
             </div>

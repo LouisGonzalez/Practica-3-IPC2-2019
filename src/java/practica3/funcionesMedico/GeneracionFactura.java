@@ -36,7 +36,7 @@ public class GeneracionFactura {
         //datos de la persona a quien se hace la factura
         retornoDatos(factura, request);
         for(int i = 0; i < x; i++){
-            precioVenta = calcularPrecio(request, response, i);   
+            precioVenta = calcularPrecio(request, i);   
             //total final de toda la factura
             cant += Integer.parseInt(request.getParameter("cantMedicina"+i)) * precioVenta;
             //datos de la factura
@@ -65,7 +65,7 @@ public class GeneracionFactura {
     }
     
     //metodo que calcula el precio unitario por cada medicamento recetado
-    private float calcularPrecio(HttpServletRequest request, HttpServletResponse response, int i) throws SQLException{
+    private float calcularPrecio(HttpServletRequest request, int i) throws SQLException{
         obtenerConexion();
         float precioVenta = 0;
         PreparedStatement declaracionPrecio = cn.prepareStatement(PRECIO);

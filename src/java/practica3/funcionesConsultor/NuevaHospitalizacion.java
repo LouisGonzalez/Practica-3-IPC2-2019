@@ -1,4 +1,4 @@
-package practica3.funcionesConsultor;
+    package practica3.funcionesConsultor;
 
 import java.sql.*;
 import practica3.conexion.Conexion;

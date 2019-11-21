@@ -100,7 +100,7 @@ public class ControladorContratacion extends HttpServlet {
                         contratacion.crearHistorial(empleado);
                         vacaciones.creacionFechasAleatorias(cuiEmpleado);
 
-                        verificar.verificacion(usuarioCuenta, request, response);
+                        request.getRequestDispatcher("perfil-recursos-humanos.jsp").forward(request, response);
                     } else {
                         contratacion.crearHistorial(empleado);
                         vacaciones.creacionFechasAleatorias(cuiEmpleado);                    
@@ -116,6 +116,7 @@ public class ControladorContratacion extends HttpServlet {
                     Empleados empleado1 = (Empleados) session.getAttribute("nuevoEmpleado");    
                     contratacion.asignarSupervisor(empleado1, cuiEmpleado);
                     contratacion.sumarPersonasMando(cuiEmpleado);
+                    request.getRequestDispatcher("perfil-recursos-humanos.jsp").forward(request, response);
                     break;
                 case "Guardar Medico":
                     Empleados empleado2 = (Empleados) session.getAttribute("nuevoEmpleado");

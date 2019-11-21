@@ -50,12 +50,10 @@ public class ReporteVentasEmpleadoDAO {
                 switch (parametro1) {
                     case "opcion1":
                         String nombreEmpleado = request.getParameter("nombreEmpleado");
-       
                         obtenerListaEmpleados(listarFiltro1(nombreEmpleado));
                         break;
                     case "opcion2":
                         int cui = Integer.parseInt(request.getParameter("cuiEmpleado"));
-        
                         obtenerListaEmpleados(listarFiltro2(cui));
                         break;
                     case "opcion3":
@@ -96,8 +94,9 @@ public class ReporteVentasEmpleadoDAO {
         } 
     }
     
-    private ArrayList<FacturasDTO> listarEmpleados() throws SQLException{
+    public ArrayList<FacturasDTO> listarEmpleados() throws SQLException{
         ArrayList<FacturasDTO> list = new ArrayList<>();
+        obtenerConexion();
         PreparedStatement declaracionEmpleados = cn.prepareStatement(LISTADO_EMPLEADOS);
         declaracionEmpleados.setString(1, ESTADO);
         declaracionEmpleados.setString(2, TIPO);
@@ -112,11 +111,13 @@ public class ReporteVentasEmpleadoDAO {
             factura.setTotal(result.getFloat("f.total"));
             list.add(factura);
         }
+        login.Desconectar();
         return list;
     }
     
-    private ArrayList<FacturasDTO> listarFiltro1(String nombreEmpleado) throws SQLException{
+    public ArrayList<FacturasDTO> listarFiltro1(String nombreEmpleado) throws SQLException{
         ArrayList<FacturasDTO> list = new ArrayList<>();
+        obtenerConexion();
         PreparedStatement declaracionEmpleados = cn.prepareStatement(LISTADO_FILTRO_EMPLEADO);
         declaracionEmpleados.setString(1, ESTADO);
         declaracionEmpleados.setString(2, TIPO);
@@ -133,11 +134,13 @@ public class ReporteVentasEmpleadoDAO {
             list.add(factura);
             
         }
+        login.Desconectar();
         return list;
     }
     
-    private ArrayList<FacturasDTO> listarFiltro2(int cui) throws SQLException{
+    public ArrayList<FacturasDTO> listarFiltro2(int cui) throws SQLException{
         ArrayList<FacturasDTO> list = new ArrayList<>();
+        obtenerConexion();
         PreparedStatement declaracionEmpleados = cn.prepareStatement(LISTADO_FILTRO_CUI);
         declaracionEmpleados.setString(1, ESTADO);
         declaracionEmpleados.setString(2, TIPO);
@@ -153,12 +156,14 @@ public class ReporteVentasEmpleadoDAO {
             factura.setTotal(result.getFloat("f.total"));
             list.add(factura);
         }
+        login.Desconectar();
         return list;
     }
     
     
-    private ArrayList<VentasFactura> listarVentas(int idFactura) throws SQLException{
+    public ArrayList<VentasFactura> listarVentas(int idFactura) throws SQLException{
         ArrayList<VentasFactura> list = new ArrayList<>();
+        obtenerConexion();
         PreparedStatement declaracionVenta = cn.prepareStatement(VENTAS_EMPLEADOS);
         declaracionVenta.setInt(1, idFactura);
         declaracionVenta.setString(2, ESTADO);
@@ -171,6 +176,7 @@ public class ReporteVentasEmpleadoDAO {
             ventas.setTotal(result.getFloat("total"));
             list.add(ventas);
         }
+        login.Desconectar();
         return list;
     }
     

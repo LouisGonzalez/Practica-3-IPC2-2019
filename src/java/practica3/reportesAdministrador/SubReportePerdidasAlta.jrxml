@@ -1,29 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="400" pageHeight="842" columnWidth="400" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="62e5ab7f-c9a4-4993-bdd5-44a7af80770a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nombres_alta_medica" class="java.lang.String"/>
+	<field name="apellidos_alta_medica" class="java.lang.String"/>
+	<field name="fecha_alta_medica" class="java.sql.Date"/>
+	<field name="total_alta_medica" class="java.lang.Float"/>
+	<field name="acumulado_alta_medica" class="java.lang.Float"/>
+	<variable name="acumulado_alta_medica_1" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{acumulado_alta_medica}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="273" height="20" uuid="4252c739-1e25-44f0-9727-f88cfc8fa6de"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Gastos por estadia dentro del hospital]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="300" y="0" width="100" height="20" uuid="f4f5eb97-de73-40f5-bef4-f40438285a9e"/>
+				<textFieldExpression><![CDATA[$V{acumulado_alta_medica_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="2b96b907-2fd2-4f7e-98b8-7a9d176aed03"/>
+				<textFieldExpression><![CDATA[$F{nombres_alta_medica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="c1c83e11-9114-40e2-a074-5531a80bbf38"/>
+				<textFieldExpression><![CDATA[$F{apellidos_alta_medica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="522c260e-87b9-4b21-8527-5cbb16bd11d1"/>
+				<textFieldExpression><![CDATA[$F{fecha_alta_medica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="20" uuid="fd4e759d-0acd-45bd-b439-f230f84cd11b"/>
+				<textFieldExpression><![CDATA[$F{total_alta_medica}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

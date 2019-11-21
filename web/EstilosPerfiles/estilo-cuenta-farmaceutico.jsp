@@ -2,6 +2,8 @@
 <%
     SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
     String user = sesion.getUsername();
+    String gananciasMedicamentos = "reporte-medicamento-ganancias.jsp";
+    String ventasEmpleado = "reporte-ventas-empleado.jsp";
 %>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light static-top" style="background-color: #e3f2fd;">
@@ -15,7 +17,7 @@
              
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="perfil-farmacia.jsp">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="nuevo-medicamento.jsp">Ingresar un nuevo tipo de medicina al inventario</a>
@@ -30,15 +32,15 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="reporte-medicamentos-farmacia.jsp">Reporte de Medicamentos</a>
-                            <a class="dropdown-item" href="reporte-medicamento-ganancias.jsp">Reporte Ganancias por Medicamento</a>
-                            <a class="dropdown-item" href="reporte-ventas-empleado.jsp">Reporte Ventas por Empleado</a>
+                            <a class="dropdown-item" href="ControladorRedireccionFarmacia?direccion=<%=gananciasMedicamentos%>">Reporte Ganancias por Medicamento</a>
+                            <a class="dropdown-item" href="ControladorRedireccionFarmacia?direccion=<%=ventasEmpleado%>">Reporte Ventas por Empleado</a>
                             
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="ControladorSesion">Salir</a>
                     </li>
                 </ul>
             </div>

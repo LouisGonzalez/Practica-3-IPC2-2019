@@ -1,4 +1,4 @@
-package practica3.funcionesMedico;
+   package practica3.funcionesMedico;
 
 import java.sql.*;
 import java.util.ArrayList;

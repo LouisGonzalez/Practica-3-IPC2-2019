@@ -79,10 +79,6 @@ public class FechasVacacionales{
         fechasAleatorias(fecha, id_empleado, fechaGuia, añoLaboral);
     }  
     
-    
-    
-    
-    
     //creacion de fechas aleatorias segun la fecha
     public void fechasAleatorias(Calendar fecha, int id_empleado, Date fechaGuia, int año_laboral) throws SQLException{
         int year = fecha.get(Calendar.YEAR);

@@ -1,4 +1,4 @@
-package practica3.funcionesRecursosHumanos;
+    package practica3.funcionesRecursosHumanos;
 
 import java.sql.*;
 import practica3.conexion.Conexion;

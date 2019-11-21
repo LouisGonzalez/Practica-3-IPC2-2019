@@ -1,4 +1,7 @@
 package practica3.reportesFarmacia;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,30 +38,32 @@ public class ReporteMedicamentos {
         return cn;
     }
     
+    public void imprimir(){
+        File objetoFile = new File("ReporteMedicamentos.pdf");
+        try {
+            Desktop.getDesktop().open(objetoFile);
+        } catch (IOException ex) {
+            Logger.getLogger(ReporteVentasEmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void imprimirReporteMedicamentos(){
         try {            
             JasperPrint jasperPrint2 = JasperFillManager.fillReport(getClass().getResourceAsStream("/practica3/reportesFarmacia/Reporte1.jasper"), null, new JRBeanCollectionDataSource(getReporteMedicamentos()));
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint2));
             exp.setExporterOutput(new SimpleOutputStreamExporterOutput("ReporteMedicamentos.pdf"));
-            JasperViewer view = new JasperViewer(jasperPrint2);
-            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            view.setVisible(true);
-            
-            
-            
-            
-            
-            
-            
-        } catch (SQLException | JRException ex) {
+            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+            exp.setConfiguration(conf);
+            exp.exportReport();
+         } catch (SQLException | JRException ex) {
             Logger.getLogger(ReporteMedicamentos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public List<Medicamentos> getReporteMedicamentos() throws SQLException {
+    public ArrayList<Medicamentos> getReporteMedicamentos() throws SQLException {
         obtenerConexion();
-        List<Medicamentos> list = new ArrayList();
+        ArrayList<Medicamentos> list = new ArrayList();
         PreparedStatement decMedicamento = cn.prepareStatement(LISTADO_MEDICAMENTOS);
         ResultSet result = decMedicamento.executeQuery();
         while(result.next()){

@@ -21,7 +21,7 @@
             SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
             String user = sesion.getUsername();
             int id = sesion.getId();
-            int idHMedico = (int) session.getAttribute("idHMedico");
+            int idHMedico = (int) session.getAttribute("idMedico");
         
         %>
     </head>
@@ -30,7 +30,7 @@
         <%
             TrabajadoresAsignacionDAO dao = new TrabajadoresAsignacionDAO();
             Medicos medico = new Medicos();
-            ArrayList<Medicos> listar = dao.listarMedicos(idMedico);
+            ArrayList<Medicos> listar = dao.listarMedicos(idHMedico);
         %>
         <div class="container"><br><br>
             <h1>Asignacion de medicos</h1>

@@ -31,7 +31,9 @@ public class EmpleadosContratadosDAO {
     private static Connection cn;
     private static Conexion login;
     private static final String LISTADO_EMPLEADOS = "SELECT * FROM Empleados e JOIN No_historial_laboral n ON e.id = n.id_empleado WHERE fecha_historial_laboral >= ? AND fecha_historial_laboral <= ? AND n.estado = ?";
+    private static final String LISTADO_SIN_FECHA = "SELECT * FROM Empleados e JOIN No_historial_laboral n ON e.id = n.id_empleado WHERE n.estado = ?";
     private static final String LISTADO_CON_AREA = "SELECT * FROM Empleados e JOIN No_historial_laboral n ON e.id = n.id_empleado WHERE fecha_historial_laboral >= ? AND fecha_historial_laboral <= ? AND area_trabajo = ? AND n.estado = ?";
+    private static final String AREA_SIN_FECHA = "SELECT * FROM Empleados e JOIN No_historial_laboral n ON e.id = n.id_empleado WHERE area_trabajo = ? AND n.estado = ?";
     private static final String ESTADO = "ACTIVO";
     
     public static Connection obtenerConexion(){
@@ -99,6 +101,32 @@ public class EmpleadosContratadosDAO {
         return list;
     }
     
+    public ArrayList<HistorialLaboral> listarEmpleadosSinFecha() throws SQLException{
+        ArrayList<HistorialLaboral> list = new ArrayList<>();
+        obtenerConexion();
+        PreparedStatement declaracionEmpleados = cn.prepareStatement(LISTADO_SIN_FECHA);
+        declaracionEmpleados.setString(1, ESTADO);
+        ResultSet result = declaracionEmpleados.executeQuery();
+        while(result.next()){
+            HistorialLaboral empleado = new HistorialLaboral();
+            empleado.setId_empleado(result.getInt("e.id"));
+            empleado.setId(result.getInt("n.id"));
+            empleado.setNombres(result.getString("e.nombres"));
+            empleado.setApellidos(result.getString("e.apellidos"));
+            empleado.setArea_trabajo(result.getString("e.area_trabajo"));
+            empleado.setTipo_contratacion(result.getString("e.tipo_contratacion"));
+            empleado.setNo_periodo_laboral(result.getInt("n.no_periodo_laboral"));
+            empleado.setSalario_base(result.getFloat("n.salario_base"));
+            empleado.setSalario_descuento(result.getFloat("n.salario_descuento"));
+            empleado.setEstado(result.getString("n.estado"));   
+            empleado.setYear(result.getInt("n.años_totales"));
+            list.add(empleado);
+        }
+        login.Desconectar();
+        return list;
+    }
+    
+    
     public ArrayList<HistorialLaboral> listarEmpleadosArea(Date primerFecha, Date segundaFecha, String area) throws SQLException{
         ArrayList<HistorialLaboral> list = new ArrayList<>();
         obtenerConexion();
@@ -126,5 +154,8 @@ public class EmpleadosContratadosDAO {
         login.Desconectar();
         return list;
     }
+    
+    
+    
     
 }

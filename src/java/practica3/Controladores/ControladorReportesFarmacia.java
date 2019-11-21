@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import practica3.reportesFarmacia.ReporteMedicamentos;
 import practica3.reportesFarmacia.ReporteVentasEmpleadoDAO;
 import practica3.reportesFarmacia.ReporteVentasMedicamentosDAO;
@@ -74,10 +75,12 @@ public class ControladorReportesFarmacia extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
+        HttpSession session = request.getSession();
         Date fecha1, fecha2;
             switch (accion) {
                 case "reporte de medicamentos":
                     reporte1.imprimirReporteMedicamentos();
+                    reporte1.imprimir();
                     request.getRequestDispatcher("reporte-medicamentos-farmacia.jsp").forward(request, response);
                     break;
                 case "reporte ganancias medicamento":
@@ -92,6 +95,30 @@ public class ControladorReportesFarmacia extends HttpServlet {
                     reporte3.imprimir();
                     request.getRequestDispatcher("reporte-ventas-empleado.jsp").forward(request, response);
                     break;
+                case "reporte ganancias medicamento html":
+                    fecha1 = Date.valueOf(request.getParameter("fecha1"));
+                    fecha2 = Date.valueOf(request.getParameter("fecha2"));
+                    boolean verificador = false;
+                    session.setAttribute("verificador", verificador);
+                    session.setAttribute("fecha1", fecha1);
+                    session.setAttribute("fecha2", fecha2);
+                    request.getRequestDispatcher("reporte-medicamento-ganancias.jsp").forward(request, response);
+                case "reporte ventas html":
+                    String[] parametro = request.getParameterValues("filtro");
+                    for(String parametro1 : parametro){
+                        switch(parametro1){
+                            case "opcion1":
+                                session.setAttribute("opciones", 1);
+                                break;
+                            case "opcion2":
+                                session.setAttribute("opciones", 2);
+                                break;
+                            case "opcion3":
+                                session.setAttribute("opciones", 3);
+                                break;
+                        }
+                    }
+                    request.getRequestDispatcher("reporte-ventas-empleado.jsp").forward(request, response);
             }
   
     }

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import practica3.reportesSupervisor.EmpleadosContratadosDAO;
 import practica3.reportesSupervisor.EmpleadosDespedidosDAO;
 import practica3.reportesSupervisor.MedicosDAO;
@@ -74,8 +75,10 @@ public class ControladorReportesRHumanos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
+        HttpSession session = request.getSession();
         Date fechaInicial, fechaFinal;
         String areaTrabajo;
+        boolean verificador;
         switch(accion){
             case "reporte empleados contratados":
                 fechaInicial = Date.valueOf(request.getParameter("fechaInicial"));
@@ -89,7 +92,7 @@ public class ControladorReportesRHumanos extends HttpServlet {
                 fechaInicial = Date.valueOf(request.getParameter("fechaInicial"));
                 fechaFinal = Date.valueOf(request.getParameter("fechaFinal"));
                 areaTrabajo = request.getParameter("areaTrabajo");
-                reporte2.imprimirReporteEmpleados(fechaInicial, fechaFinal, request, areaTrabajo);
+                reporte2.imprimirReporteEmpleados(fechaInicial, fechaFinal, request, areaTrabajo, session);
                 reporte2.imprimir();
                 request.getRequestDispatcher("reporte-empleados-fuera.jsp").forward(request, response);
                 break;
@@ -97,6 +100,35 @@ public class ControladorReportesRHumanos extends HttpServlet {
                 reporte3.imprimirReporte(request);
                 reporte3.imprimir();
                 request.getRequestDispatcher("reporte-medicos.jsp").forward(request, response);
+                break;
+            case "reporte empleados contratados html":
+                fechaInicial = Date.valueOf(request.getParameter("fechaInicial"));
+                fechaFinal = Date.valueOf(request.getParameter("fechaFinal"));
+                verificador = false;
+                if(request.getParameterValues("verificador") != null){
+                    session.setAttribute("opciones", 2);
+                } else {
+                    session.setAttribute("opciones", 1);
+                }
+                session.setAttribute("fecha1", fechaInicial);
+                session.setAttribute("fecha2", fechaFinal);
+                session.setAttribute("verificador", verificador);
+                request.getRequestDispatcher("reporte-empleados-contratados.jsp").forward(request, response);
+                break;
+            case "reporte empleados fuera html":
+                fechaInicial = Date.valueOf(request.getParameter("fechaInicial"));
+                fechaFinal = Date.valueOf(request.getParameter("fechaFinal"));
+                verificador = false;
+                if(request.getParameterValues("verificador") != null){
+                    session.setAttribute("opciones", 2);
+                } else {
+                    session.setAttribute("opciones", 1);
+                }
+                session.setAttribute("fecha1", fechaInicial);
+                session.setAttribute("fecha2", fechaFinal);
+                session.setAttribute("verificador", verificador);
+                request.getRequestDispatcher("reporte-empleados-fuera.jsp").forward(request, response);
+                
                 break;
             
         }

@@ -1,29 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="299e72e0-1d2d-4afa-8287-ae1f62cb479c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="costo_unitario" class="java.lang.Float"/>
+	<field name="precio_venta" class="java.lang.Float"/>
+	<field name="cant_existencia" class="java.lang.Integer"/>
+	<field name="limite_existencia" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="127" y="19" width="300" height="43" uuid="80f7f449-d1f3-4109-aa03-40b06dd39b54"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte Medicamentos ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="18" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="39" height="20" uuid="ed30b2bd-6e89-4da0-a5dd-7d2c7f9c3327"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="1" width="88" height="20" uuid="8e3d488f-e49f-4e55-932e-77e07e3313dd"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="1" width="100" height="20" uuid="3ab2a53e-ba8a-4ec6-a3b2-d8839ad793ca"/>
+				<text><![CDATA[costo_unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="1" width="100" height="20" uuid="156c923d-1c23-47b4-b53e-e3ed9d1c0a89"/>
+				<text><![CDATA[precio_venta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="1" width="100" height="20" uuid="9ce9e193-baed-4330-8692-c0c341e828e8"/>
+				<text><![CDATA[cant_existencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="1" width="100" height="20" uuid="85802677-3cc6-474b-93f0-ac46063b0d95"/>
+				<text><![CDATA[limite_existencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="39" height="20" uuid="c77f017c-ee17-4169-83f5-dcc39d76c069"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="0" width="88" height="20" uuid="88a591c4-38fe-4bec-9cd6-ea9287d41a6f"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="0" width="100" height="20" uuid="f32df727-8e35-4c77-957f-124514d67628"/>
+				<textFieldExpression><![CDATA[$F{costo_unitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="0" width="100" height="20" uuid="094fe79d-e237-4aba-b810-9fdcd21f4153"/>
+				<textFieldExpression><![CDATA[$F{precio_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="100" height="20" uuid="0b961972-ca93-436d-a322-a76ecf2f9297"/>
+				<textFieldExpression><![CDATA[$F{cant_existencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="100" height="20" uuid="8d4dc84a-415c-4c71-a27d-3dca53052620"/>
+				<textFieldExpression><![CDATA[$F{limite_existencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="18" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>

@@ -2,6 +2,9 @@
 <%
     SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
     String user = sesion.getUsername();
+    String reporte1 = "reporte-empleados-contratados.jsp";
+    String reporte2 = "reporte-empleados-fuera.jsp";
+    String reporte3 = "reporte-medicos.jsp";
 %>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light static-top" style="background-color: #e3f2fd;">
@@ -40,9 +43,9 @@
                             Reportes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="reporte-empleados-contratados.jsp">Reporte empleados contratados</a>
-                            <a class="dropdown-item" href="reporte-empleados-fuera.jsp">Reporte empleados fuera de la empresa</a>
-                            <a class="dropdown-item" href="reporte-medicos.jsp">Reporte Medicos</a>
+                            <a class="dropdown-item" href="ControladorSupervisionRHumanos?direccion=<%=reporte1%>">Reporte empleados contratados</a>
+                            <a class="dropdown-item" href="ControladorSupervisionRHumanos?direccion=<%=reporte2%>">Reporte empleados fuera de la empresa</a>
+                            <a class="dropdown-item" href="ControladorSupervisionRHumanos?direccion=<%=reporte3%>">Reporte Medicos</a>
                             <a class="dropdown-item" href="reporte-ingresos.jsp">Reporte de Ingresos</a>
                             <a class="dropdown-item" href="reporte-perdidas.jsp">Reporte de Perdidas</a>
                             
@@ -50,7 +53,7 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="ControladorSesion">Salir</a>
                     </li>
                 </ul>
             </div>

@@ -1,4 +1,4 @@
-package practica3.funcionesAdministrador;
+ package practica3.funcionesAdministrador;
 
 import java.sql.*;
 import practica3.conexion.Conexion;

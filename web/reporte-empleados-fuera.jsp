@@ -1,9 +1,12 @@
 <%-- 
     Document   : reporte-empleados-fuera
     Created on : 17/11/2019, 04:25:41 PM
-    Author     : luisitopapurey
+    Author     : luisGonzalez
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="practica3.objetos.HistorialLaboral"%>
+<%@page import="practica3.reportesSupervisor.EmpleadosDespedidosDAO"%>
 <%@page import="java.sql.*"%>
 <%@page import="practica3.conexion.Conexion"%>
 <%@page import="practica3.objetos.SesionEmpleados"%>
@@ -20,6 +23,8 @@
         SesionEmpleados sesion = (SesionEmpleados) session.getAttribute("usuario");
         String user = sesion.getUsername();
         int id = sesion.getId();
+        Date fechaInicial = (Date) session.getAttribute("fecha1");
+        Date fechaFinal = (Date) session.getAttribute("fecha2");
         %>
     </head>
     <body>
@@ -42,9 +47,58 @@
                     <%}
                     %>
                 </select>
+                    <% session.setAttribute("area", request.getParameter("areaTrabajo")); %>
                 <input type="checkbox" name="verificador" class="form-control">
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="reporte empleados fuera">Ver reporte</button>                                                                                                    
-            </form>    
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="reporte empleados fuera">Ver reporte PDF</button>                                                                                                    
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="accion" value="reporte empleados fuera html">Ver reporte HTML</button>                                                                                                    
+            </form> 
+            <%
+                EmpleadosDespedidosDAO dao = new EmpleadosDespedidosDAO();
+                HistorialLaboral historial = new HistorialLaboral();
+                ArrayList<HistorialLaboral> listar = null;
+                boolean verificador = (boolean) session.getAttribute("verificador");
+                if(verificador == true){
+                    listar = dao.listarEmpleado2();
+                } else {
+                    listar = dao.listarEmpleados(fechaInicial, fechaFinal, request, (String) session.getAttribute("area"), session);
+                }
+            %>    
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id empleado</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Area de trabajo</th>
+                        <th scope="col">Tipo Contratacion</th>
+                        <th scope="col">Salario Base</th>
+                        <th scope="col">Salario Descuento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        int x = 0;
+                        if(listar.size() > 0){
+                            for(HistorialLaboral listar2 : listar){
+                                historial = listar2;
+                                x++;
+                    %>
+                    <tr>
+                        <td scope="row"><%=x%></td>
+                        <td><%=historial.getId_empleado()%></td>
+                        <td><%=historial.getNombres()%></td>
+                        <td><%=historial.getApellidos()%></td>
+                        <td><%=historial.getArea_trabajo()%></td>
+                        <td><%=historial.getTipo_contratacion()%></td>
+                        <td><%=historial.getSalario_base()%></td>
+                        <td><%=historial.getSalario_descuento()%></td>
+                    </tr>
+                    <%
+                        }
+                    }%>
+                </tbody>
+            </table>
         </div>
         <jsp:include page='EstilosPerfiles/scripts.html'/>
     </body>

@@ -29,8 +29,11 @@ public class ReporteVentasMedicamentosDAO {
     private static Connection cn;
     private static Conexion login;
     private static final String LISTADO_MEDICAMENTOS = "SELECT * FROM Medicamentos ORDER BY id";
-    private static final String LISTADO_GANANCIAS = "SELECT SUM(IF(m.id = ?, v.total, 0)) total_medicamento FROM Medicamentos m JOIN Ventas_factura v ON m.id = v.id_medicamento WHERE estado = ?";
-    private static final String LISTADO_DESGLOSADO = "SELECT * FROM Factura f JOIN Ventas_factura v ON f.id = v.id_factura WHERE v.id_medicamento = ? AND f.estado = ? AND f.fecha_factura >= ? AND f.fecha_factura <= ?";
+    private static final String LISTADO_GANANCIAS = "SELECT SUM(IF(m.id = ?, v.total, 0)) total_medicamento FROM Medicamentos m JOIN Ventas_factura v ON m.id = v.id_medicamento JOIN Factura f ON v.id_factura = f.id WHERE v.estado = ? AND f.fecha_factura >= ? AND f.fecha_factura <= ?";
+    private static final String LISTADO_GANANCIAS_SIN_FECHA = "SELECT SUM(IF(m.id = ?, v.total, 0)) total_medicamento FROM Medicamentos m JOIN Ventas_factura v ON m.id = v.id_medicamento JOIN Factura f ON v.id_factura = f.id WHERE v.estado = ?";
+    
+    private static final String LISTADO_DESGLOSADO = "SELECT * FROM Factura f JOIN Ventas_factura v ON f.id = v.id_factura WHERE v.id_medicamento = ? AND v.estado = ? AND f.fecha_factura >= ? AND f.fecha_factura <= ?";
+    private static final String LISTADO_SIN_FECHA = "SELECT * FROM Factura f JOIN Ventas_factura v ON f.id = v.id_factura WHERE v.id_medicamento = ? AND v.estado = ?";
     private static final String ESTADO = "CANCELADA";
     
     public static Connection obtenerConexion(){
@@ -65,7 +68,8 @@ public class ReporteVentasMedicamentosDAO {
         }
     }
     
-    private ArrayList<MedicamentosDTO> listarMedicamentos(Date fecha1, Date fecha2) throws SQLException{
+    
+    public ArrayList<MedicamentosDTO> listarMedicamentos(Date fecha1, Date fecha2) throws SQLException{
         ArrayList<MedicamentosDTO> list = new ArrayList<>();
         obtenerConexion();  
         PreparedStatement decMedicamento = cn.prepareStatement(LISTADO_MEDICAMENTOS);
@@ -79,6 +83,8 @@ public class ReporteVentasMedicamentosDAO {
             PreparedStatement declaracionGanancia = cn.prepareStatement(LISTADO_GANANCIAS);
             declaracionGanancia.setInt(1, medicamento.getId());
             declaracionGanancia.setString(2, ESTADO);
+            declaracionGanancia.setDate(3, fecha1);
+            declaracionGanancia.setDate(4, fecha2);
             ResultSet result2 = declaracionGanancia.executeQuery();
             while(result2.next()){
                 medicamento.setGanancia(result2.getFloat("total_medicamento"));
@@ -86,11 +92,35 @@ public class ReporteVentasMedicamentosDAO {
             list.add(medicamento);
         }
         login.Desconectar();
-        
         return list;
     }
     
-    private ArrayList<Facturas> listarGanancias(int idMedicamento, Date fecha1, Date fecha2) throws SQLException{
+    public ArrayList<MedicamentosDTO> listarSinFecha() throws SQLException{
+        ArrayList<MedicamentosDTO> list = new ArrayList<>();
+        obtenerConexion();  
+        PreparedStatement decMedicamento = cn.prepareStatement(LISTADO_MEDICAMENTOS);
+        ResultSet result = decMedicamento.executeQuery();
+        while(result.next()){
+            MedicamentosDTO medicamento = new MedicamentosDTO(listarGananciasSinfecha(result.getInt("id")));
+            medicamento.setId(result.getInt("id"));
+            medicamento.setNombre(result.getString("nombre"));
+            medicamento.setCosto_unitario(result.getFloat("costo_unitario"));
+            medicamento.setPrecio_venta(result.getFloat("precio_venta"));
+            PreparedStatement declaracionGanancia = cn.prepareStatement(LISTADO_GANANCIAS_SIN_FECHA);
+            declaracionGanancia.setInt(1, medicamento.getId());
+            declaracionGanancia.setString(2, ESTADO);
+            ResultSet result2 = declaracionGanancia.executeQuery();
+            while(result2.next()){
+                medicamento.setGanancia(result2.getFloat("total_medicamento"));
+            }
+            list.add(medicamento);
+        }
+        login.Desconectar();
+        return list;
+    }
+    
+    
+    public ArrayList<Facturas> listarGanancias(int idMedicamento, Date fecha1, Date fecha2) throws SQLException{
         ArrayList<Facturas> list = new ArrayList<>();
         obtenerConexion();
         PreparedStatement declaracionGanancia = cn.prepareStatement(LISTADO_DESGLOSADO);
@@ -111,6 +141,28 @@ public class ReporteVentasMedicamentosDAO {
         }
         login.Desconectar();
         return list;
+    }
+    
+    public ArrayList<Facturas> listarGananciasSinfecha(int idMedicamento) throws SQLException{
+        ArrayList<Facturas> list = new ArrayList<>();
+        obtenerConexion();
+        PreparedStatement declaracionGanancia = cn.prepareStatement(LISTADO_SIN_FECHA);
+        declaracionGanancia.setInt(1, idMedicamento);
+        declaracionGanancia.setString(2, ESTADO);
+        ResultSet result = declaracionGanancia.executeQuery();
+        while(result.next()){
+            Facturas medicamento = new Facturas();
+            medicamento.setId(result.getInt("id"));
+            medicamento.setNombres(result.getString("f.nombres"));
+            medicamento.setApellidos(result.getString("f.apellidos"));
+            medicamento.setFecha_factura(result.getDate("f.fecha_factura"));
+            medicamento.setTotal(result.getFloat("v.total"));
+            medicamento.setCant_producto(result.getInt("v.cant_producto"));     
+            list.add(medicamento);
+        }
+        login.Desconectar();
+        return list;
+    
     }
     
     

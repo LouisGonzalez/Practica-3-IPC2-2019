@@ -47,7 +47,7 @@
 		<band height="93">
 			<subreport>
 				<reportElement x="0" y="0" width="566" height="93" uuid="b8712300-1bbc-4eab-994e-d7967cfe3ebc"/>
-				<dataSourceExpression><![CDATA[]]></dataSourceExpression>
+				<dataSourceExpression><![CDATA[$F{source_alta_medica}]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubReportePerdidasAlta.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
